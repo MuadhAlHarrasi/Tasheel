@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تسهيل | الأثاث والمنتجات الجاهزة</title>
+
+<style>
+:root {
+  --bg-page:#f8f9fa;
+  --text-main:#1a1a1a;
+  --text-muted:#6c757d;
+  --border-light:rgba(0,0,0,0.08);
+  --border-light-strong:rgba(0,0,0,0.12);
+  --radius-xl:1.25rem;
+  --radius-lg:1rem;
+  --radius-md:0.75rem;
+  --radius-pill:999px;
+  --shadow-soft:0 12px 32px rgba(0,0,0,0.06);
+  --shadow-hover:0 24px 48px rgba(0,0,0,0.08);
+  --transition-mid:.25s ease;
+  --accent-btn:#d93025;
+}
+
+*{box-sizing:border-box;-webkit-font-smoothing:antialiased;}
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif;
+  background-color:var(--bg-page);
+  color:var(--text-main);
+  line-height:1.4;
+  text-rendering:optimizeLegibility;
+}
+img{display:block;max-width:100%;}
+
+.container{
+  width:100%;
+  max-width:1100px;
+  padding:0 16px;
+  margin:0 auto;
+}
+
+/* HEADER */
+.site-header{
+  background-color:#fff;
+  border-bottom:1px solid var(--border-light);
+  padding:12px 0;
+}
+.header-row{
+  display:flex;
+  flex-wrap:wrap;
+  row-gap:16px;
+  align-items:center;
+  justify-content:space-between;
+}
+.header-left{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  text-decoration:none;
+  color:inherit;
+}
+.brand-logo-lg{
+  width:48px;
+  height:48px;
+  object-fit:contain;
+  border-radius:var(--radius-md);
+  background-color:#fff;
+  border:1px solid var(--border-light);
+  box-shadow:0 16px 32px rgba(0,0,0,0.07);
+}
+.brand-text-wrap{
+  display:flex;
+  flex-direction:column;
+}
+.brand-name{
+  font-size:16px;
+  font-weight:700;
+  color:var(--text-main);
+  line-height:1.2;
+}
+.brand-tagline{
+  font-size:12px;
+  color:var(--text-muted);
+  line-height:1.3;
+}
+.header-right{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.search-icon-btn{
+  background-color:#fff;
+  border:1px solid var(--border-light);
+  border-radius:50%;
+  width:42px;
+  height:42px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 8px 20px rgba(0,0,0,0.06);
+  cursor:pointer;
+  transition:all .18s ease;
+}
+.search-icon-btn:hover{
+  background-color:#000;
+  border-color:#000;
+}
+.search-icon-btn:hover .search-icon-symbol{
+  color:#fff;
+}
+.search-icon-symbol{
+  font-size:1.1rem;
+  color:#000;
+  line-height:1;
+}
+.auth-btn{
+  font-size:14px;
+  font-weight:600;
+  border-radius:var(--radius-pill);
+  border:1px solid #000;
+  background-color:#fff;
+  color:#000;
+  padding:10px 16px;
+  line-height:1.2;
+  box-shadow:0 10px 24px rgba(0,0,0,0.07);
+  text-decoration:none;
+  transition:all .18s ease;
+  display:inline-block;
+}
+.auth-btn:hover{
+  background-color:#000;
+  color:#fff;
+}
+
+/* HERO */
+.page-hero{
+  background-color:#fff;
+  border-bottom:1px solid var(--border-light);
+  padding:32px 0;
+  text-align:center;
+}
+.page-title{
+  font-size:20px;
+  font-weight:700;
+  color:var(--text-main);
+  line-height:1.3;
+  margin:0 0 8px;
+}
+.page-desc{
+  font-size:13px;
+  color:var(--text-muted);
+  line-height:1.5;
+  max-width:520px;
+  margin:0 auto;
+}
+
+/* GRID OF SHOPS */
+.vendor-section{
+  background-color:#fff;
+  border-bottom:1px solid var(--border-light);
+  padding:32px 0 48px;
+}
+
+.vendor-grid{
+  display:grid;
+  gap:24px;
+  max-width:1000px;
+  margin:0 auto;
+}
+@media(min-width:768px){
+  .vendor-grid{
+    grid-template-columns:1fr 1fr;
+  }
+}
+
+.vendor-card{
+  background-color:#fff;
+  border:1px solid var(--border-light);
+  border-radius:var(--radius-xl);
+  box-shadow:var(--shadow-soft);
+  padding:20px 20px 16px;
+  display:flex;
+  flex-direction:column;
+  min-height:220px;
+  transition:all var(--transition-mid);
+}
+.vendor-card:hover{
+  box-shadow:var(--shadow-hover);
+  border-color:var(--border-light-strong);
+  transform:translateY(-2px);
+}
+
+.vendor-top{
+  display:flex;
+  align-items:flex-start;
+  gap:16px;
+}
+
+.vendor-logo{
+  width:64px;
+  height:64px;
+  border-radius:var(--radius-lg);
+  background-color:#f8f9fa;
+  border:1px solid var(--border-light);
+  box-shadow:0 8px 20px rgba(0,0,0,0.06);
+  overflow:hidden;
+  flex-shrink:0;
+}
+.vendor-logo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.vendor-main-info{
+  flex:1;
+  min-width:0;
+}
+
+.vendor-name{
+  font-size:15px;
+  font-weight:600;
+  color:var(--text-main);
+  line-height:1.4;
+  margin:0 0 4px;
+}
+
+/* <-- مهم: بدون تركيب / بدون تفصيل في الموقع --> */
+.vendor-services{
+  font-size:13px;
+  line-height:1.4;
+  color:var(--text-main);
+  margin:0 0 8px;
+}
+
+.vendor-tags-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin-bottom:12px;
+}
+
+.vendor-tag{
+  background-color:#f8f9fa;
+  border:1px solid var(--border-light);
+  color:var(--text-main);
+  font-size:11px;
+  line-height:1.2;
+  font-weight:500;
+  padding:6px 8px;
+  border-radius:var(--radius-pill);
+  box-shadow:0 8px 20px rgba(0,0,0,0.03);
+  white-space:nowrap;
+}
+
+.vendor-bottom{
+  margin-top:auto;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:space-between;
+  row-gap:12px;
+  column-gap:12px;
+  align-items:flex-end;
+  border-top:1px solid var(--border-light);
+  padding-top:16px;
+}
+
+.vendor-meta{
+  font-size:12px;
+  line-height:1.4;
+  color:var(--text-muted);
+}
+.vendor-meta-line{
+  margin-bottom:4px;
+}
+.vendor-meta-label{
+  color:var(--text-main);
+  font-weight:600;
+  font-size:12px;
+  margin-left:4px;
+}
+
+.vendor-action{
+  flex-shrink:0;
+}
+.quote-btn{
+  display:inline-block;
+  background-color:var(--accent-btn);
+  color:#fff;
+  border-radius:var(--radius-md);
+  font-size:13px;
+  font-weight:600;
+  line-height:1.2;
+  text-decoration:none;
+  padding:10px 14px;
+  border:0;
+  box-shadow:0 18px 36px rgba(217,48,37,0.4);
+  transition:all .18s ease;
+}
+.quote-btn:hover{
+  filter:brightness(1.08);
+}
+
+/* FOOTER */
+.footer-section{
+  background-color:#f1f2f4;
+  border-top:1px solid var(--border-light);
+  padding:40px 0;
+  color:var(--text-main);
+  font-size:13px;
+  line-height:1.4;
+}
+.footer-grid{
+  max-width:1100px;
+  margin:0 auto;
+  display:grid;
+  gap:24px;
+}
+@media(min-width:768px){
+  .footer-grid{
+    grid-template-columns:repeat(3,1fr);
+  }
+}
+.footer-block-title{
+  font-weight:700;
+  font-size:14px;
+  color:var(--text-main);
+  margin-bottom:8px;
+}
+.footer-desc{
+  font-size:12px;
+  color:var(--text-muted);
+  line-height:1.5;
+  margin-bottom:16px;
+  max-width:320px;
+}
+.footer-links{
+  display:grid;
+  gap:6px;
+}
+.footer-link{
+  font-size:12px;
+  color:var(--text-main);
+  text-decoration:none;
+  line-height:1.4;
+}
+.footer-link:hover{
+  text-decoration:underline;
+  color:#000;
+}
+.footer-info-line{
+  font-size:12px;
+  color:var(--text-muted);
+  line-height:1.5;
+  margin-bottom:4px;
+}
+.footer-info-line .label{
+  font-weight:600;
+  color:var(--text-main);
+}
+.footer-copy{
+  margin-top:24px;
+  font-size:12px;
+  color:var(--text-muted);
+  line-height:1.4;
+  text-align:center;
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <div class="header-row">
+
+      <!-- الشعار يرجع للصفحة الرئيسية -->
+      <a class="header-left" href="index.html">
+        <img src="img/img1.png" class="brand-logo-lg" alt="تسهيل">
+        <div class="brand-text-wrap">
+          <div class="brand-name">تسهيل</div>
+          <div class="brand-tagline">الأثاث والمنتجات الجاهزة</div>
+        </div>
+      </a>
+
+      <div class="header-right">
+        <button class="search-icon-btn"><span class="search-icon-symbol">🔍</span></button>
+        <a href="#" class="auth-btn">تسجيل الدخول / إنشاء حساب</a>
+      </div>
+
+    </div>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="container">
+    <h1 class="page-title">الأثاث والمنتجات الجاهزة</h1>
+    <p class="page-desc">
+      محلات ومعارض تبيع مطابخ جاهزة، خزائن جاهزة، وحدات مغاسل جاهزة، وألواح ديكور.
+      منتجات جاهزة للشراء المباشر.
+    </p>
+  </div>
+</section>
+
+<section class="vendor-section">
+  <div class="container">
+
+    <div class="vendor-grid">
+
+      <!-- المحل الأول -->
+      <div class="vendor-card">
+        <div class="vendor-top">
+          <div class="vendor-logo">
+            <img src="img/vendor2.png" alt="مطابخ النخبة">
+          </div>
+          <div class="vendor-main-info">
+            <div class="vendor-name">مطابخ النخبة</div>
+            <div class="vendor-services">
+              محل بيع مطابخ جاهزة، خزائن مطبخ جاهزة، وأسطح عمل جاهزة (رخام / كوارتز).
+            </div>
+            <div class="vendor-tags-row">
+              <div class="vendor-tag">مطابخ جاهزة</div>
+              <div class="vendor-tag">خزائن للمطبخ</div>
+              <div class="vendor-tag">أسطح عمل جاهزة</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="vendor-bottom">
+          <div class="vendor-meta">
+            <div class="vendor-meta-line">
+              <span class="vendor-meta-label">الموقع:</span> السيب
+            </div>
+            <div class="vendor-meta-line">
+              <span class="vendor-meta-label">المتوفر:</span> تشكيلات مطابخ جاهزة وخزائن جاهزة
+            </div>
+          </div>
+
+          <div class="vendor-action">
+            <a class="quote-btn" href="#">استفسار عن السعر</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- المحل الثاني -->
+      <div class="vendor-card">
+        <div class="vendor-top">
+          <div class="vendor-logo">
+            <img src="img/vendor4.png" alt="حلول التشطيب الداخلي">
+          </div>
+          <div class="vendor-main-info">
+            <div class="vendor-name">حلول التشطيب الداخلي</div>
+            <div class="vendor-services">
+              محل أثاث ثابت: خزائن غرف نوم جاهزة، وحدات مغاسل جاهزة للحمامات،
+              وألواح ديكور جاهزة للحوائط.
+            </div>
+            <div class="vendor-tags-row">
+              <div class="vendor-tag">خزائن غرف نوم</div>
+              <div class="vendor-tag">مغاسل جاهزة</div>
+              <div class="vendor-tag">ألواح ديكور جاهزة</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="vendor-bottom">
+          <div class="vendor-meta">
+            <div class="vendor-meta-line">
+              <span class="vendor-meta-label">الموقع:</span> العامرات
+            </div>
+            <div class="vendor-meta-line">
+              <span class="vendor-meta-label">المتوفر:</span> غرف نوم • حمامات • ديكور حوائط
+            </div>
+          </div>
+
+          <div class="vendor-action">
+            <a class="quote-btn" href="#">استفسار عن السعر</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<footer class="footer-section">
+  <div class="container">
+    <div class="footer-grid">
+
+      <div>
+        <div class="footer-block-title">تسهيل</div>
+        <div class="footer-desc">
+          دليل معارض الأثاث الجاهز، المطابخ الجاهزة، خزائن الغرف الجاهزة،
+          ووحدات المغاسل الجاهزة.
+        </div>
+        <div class="footer-links">
+          <a href="#" class="footer-link">عن الشركة</a>
+          <a href="#" class="footer-link">تواصل معنا</a>
+          <a href="#" class="footer-link">الأسئلة الشائعة</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="footer-block-title">معلومات التواصل</div>
+        <div class="footer-info-line"><span class="label">الاسم التجاري:</span> تسهيل لخدمات البناء</div>
+        <div class="footer-info-line"><span class="label">رقم الهاتف:</span> +968 0000 0000</div>
+        <div class="footer-info-line"><span class="label">البريد الإلكتروني:</span> info@tasheel.example</div>
+        <div class="footer-info-line"><span class="label">صندوق البريد:</span> 1234 مسقط</div>
+      </div>
+
+      <div>
+        <div class="footer-block-title">روابط</div>
+        <div class="footer-links">
+          <a href="#" class="footer-link">المطورون</a>
+          <a href="#" class="footer-link">شروط الخدمة</a>
+          <a href="#" class="footer-link">سياسة الخصوصية</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer-copy">© 2025 تسهيل. جميع الحقوق محفوظة.</div>
+  </div>
+</footer>
+
+</body>
+</html>

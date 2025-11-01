@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>تسهيل | منصّة خدمات البناء</title>
+    <style>
+      :root {
+        /* الألوان والتنسيق */
+        --bg-page: #f8f9fa;
+        --text-main: #1a1a1a;
+        --text-muted: #6c757d;
+        --border-light: rgba(0, 0, 0, 0.08);
+        --border-light-strong: rgba(0, 0, 0, 0.15);
+        --radius-xl: 1.25rem;
+        --radius-lg: 1rem;
+        --radius-md: 0.75rem;
+        --radius-pill: 999px;
+        /* الظلال */
+        --shadow-soft: 0 12px 32px rgba(0, 0, 0, 0.06);
+        --shadow-card: 0 24px 48px rgba(0, 0, 0, 0.14);
+        --shadow-deep: 0 32px 64px rgba(0, 0, 0, 0.55);
+        /* الانتقالات */
+        --transition-fast: 0.18s ease;
+        --transition-mid: 0.25s ease;
+        /* الأبطال (Hero) و الشريط العلوي (Navbar) */
+        --hero-bg-overlay: rgba(0, 0, 0, 0.45);
+        --hero-card-bg: rgba(0, 0, 0, 0.3);
+        --navbar-bg: rgba(0, 0, 0, 0.5);
+      }
+
+      * {
+        box-sizing: border-box;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      body {
+        margin: 0;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          "Helvetica Neue", sans-serif;
+        background-color: var(--bg-page);
+        color: var(--text-main);
+        line-height: 1.5;
+        text-rendering: optimizeLegibility;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      /* NAVBAR */
+      .navbar {
+        position: relative;
+        z-index: 1000;
+        background-color: var(--navbar-bg);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        color: #fff;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+        padding: 12px 16px;
+      }
+
+      .nav-inner {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap;
+        row-gap: 12px;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .nav-left {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        color: #fff;
+        text-decoration: none;
+      }
+
+      .brand-logo-img {
+        width: 44px;
+        height: 44px;
+        border-radius: 8px;
+        background: #fff;
+        border: 1px solid rgba(0, 0, 0, 0.15);
+        box-shadow: 0 16px 32px rgba(0, 0, 0, 0.4);
+        object-fit: cover;
+      }
+
+      .brand-texts {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .brand-name {
+        font-size: 15px;
+        line-height: 1.2;
+        font-weight: 700;
+        color: #fff;
+      }
+
+      .brand-tagline {
+        font-size: 12px;
+        line-height: 1.3;
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      .nav-middle {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 16px;
+        color: #fff;
+        font-size: 13px;
+      }
+
+      .nav-link {
+        color: rgba(255, 255, 255, 0.9);
+        text-decoration: none;
+        line-height: 1.4;
+        font-weight: 500;
+        transition: color var(--transition-fast);
+      }
+
+      .nav-link:hover {
+        color: #fff;
+        text-decoration: underline;
+      }
+
+      .nav-right {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .search-pill {
+        background-color: #fff;
+        color: #000;
+        border-radius: var(--radius-pill);
+        padding: 10px 16px;
+        min-height: 40px;
+        min-width: 140px;
+        font-size: 13px;
+        font-weight: 500;
+        line-height: 1.2;
+        border: 1px solid #fff;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        cursor: pointer;
+        text-decoration: none;
+        transition: all var(--transition-fast);
+      }
+
+      .search-pill:hover {
+        background-color: var(--bg-page);
+        border-color: var(--bg-page);
+      }
+
+      .search-pill span {
+        white-space: nowrap;
+        color: #000;
+      }
+
+      .search-icon {
+        font-size: 14px;
+        line-height: 1;
+        color: #000;
+      }
+
+      .auth-btn {
+        font-size: 13px;
+        font-weight: 600;
+        border-radius: var(--radius-pill);
+        border: 1px solid #fff;
+        background-color: transparent;
+        color: #fff;
+        padding: 10px 16px;
+        line-height: 1.2;
+        text-decoration: none;
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.4);
+        transition: all var(--transition-fast);
+      }
+
+      .auth-btn:hover {
+        background-color: #fff;
+        color: #000;
+        border-color: #fff;
+      }
+
+      /* HERO SLIDER */
+      .hero-wrapper {
+        position: relative;
+        background-color: #000;
+        color: #fff;
+        min-height: 480px;
+        max-height: 680px;
+        display: flex;
+        align-items: stretch;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+      }
+
+      .hero-bg {
+        position: absolute;
+        inset: 0;
+        background: #000 center center / cover no-repeat;
+        transition: background-image 0.5s ease-in-out;
+      }
+
+      .hero-overlay {
+        position: absolute;
+        inset: 0;
+        background: var(--hero-bg-overlay);
+      }
+
+      .hero-content-area {
+        position: relative;
+        z-index: 5;
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        padding: 40px 16px 80px;
+        min-height: 480px;
+      }
+
+      @media (min-width: 768px) {
+        .hero-content-area {
+          justify-content: center;
+          padding: 60px 16px 120px;
+        }
+      }
+
+      .hero-card {
+        max-width: 800px;
+        background-color: var(--hero-card-bg);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-deep);
+        padding: 24px 24px 28px;
+        color: #fff;
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+      }
+
+      .hero-headline {
+        font-size: clamp(1.6rem, 2vw, 2.4rem);
+        line-height: 1.3;
+        font-weight: 700;
+        color: #fff;
+        margin: 0 0 16px;
+        text-shadow: 0 24px 48px rgba(0, 0, 0, 0.9);
+      }
+
+      .hero-desc {
+        font-size: 14px;
+        line-height: 1.6;
+        color: rgba(255, 255, 255, 0.8);
+        margin: 0 0 20px;
+        max-width: 640px;
+        min-height: 3.5em;
+        transition: opacity var(--transition-mid);
+      }
+
+      .hero-cta-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .hero-cta-btn {
+        display: inline-block;
+        background-color: #fff;
+        color: #000;
+        font-size: 13px;
+        font-weight: 600;
+        line-height: 1.2;
+        text-decoration: none;
+        padding: 12px 16px;
+        border-radius: var(--radius-pill);
+        border: 1px solid #fff;
+        box-shadow: 0 24px 48px rgba(0, 0, 0, 0.6);
+        transition: all var(--transition-fast);
+      }
+
+      .hero-cta-btn:hover {
+        background-color: #000;
+        color: #fff;
+        border-color: #fff;
+      }
+
+      .hero-controls-bar {
+        position: absolute;
+        bottom: 16px;
+        right: 16px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+        color: #fff;
+        font-size: 12px;
+        line-height: 1.4;
+      }
+
+      @media (min-width: 768px) {
+        .hero-controls-bar {
+          bottom: 24px;
+          right: 24px;
+        }
+      }
+
+      .quick-label {
+        color: #fff;
+        font-size: 12px;
+        line-height: 1.4;
+        font-weight: 500;
+        text-shadow: 0 20px 40px rgba(0, 0, 0, 0.9);
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        white-space: nowrap;
+      }
+
+      .hero-nav-buttons {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .hero-nav-btn {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background-color: #fff;
+        border: 0;
+        box-shadow: 0 24px 48px rgba(0, 0, 0, 0.6);
+        color: #000;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 1;
+        transition: filter var(--transition-fast);
+      }
+
+      .hero-nav-btn:hover {
+        filter: brightness(1.05);
+      }
+
+      /* الأقسام الرئيسية */
+      .categories-wrapper {
+        background-color: #fff;
+        border-top: 1px solid var(--border-light);
+        border-bottom: 1px solid var(--border-light);
+        padding: 48px 16px;
+        text-align: center;
+      }
+
+      .section-head {
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--text-main);
+        line-height: 1.4;
+        margin: 0 0 8px;
+      }
+
+      .section-sub {
+        font-size: 13px;
+        line-height: 1.5;
+        color: var(--text-muted);
+        max-width: 360px;
+        margin: 0 auto 32px;
+      }
+
+      .cat-grid {
+        max-width: 1000px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      @media (min-width: 700px) {
+        .cat-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      .cat-card {
+        background-color: #fff;
+        border: 1px solid var(--border-light);
+        border-radius: var(--radius-xl);
+        box-shadow: var(--shadow-soft);
+        padding: 20px 16px;
+        min-height: 200px;
+        text-decoration: none;
+        color: var(--text-main);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        transition: all var(--transition-mid);
+      }
+
+      .cat-card:hover {
+        box-shadow: var(--shadow-card);
+        border-color: var(--border-light-strong);
+        transform: translateY(-3px);
+      }
+
+      .cat-icon-box {
+        width: 80px;
+        height: 80px;
+        border-radius: var(--radius-lg);
+        background-color: #f8f9fa;
+        border: 1px solid var(--border-light);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 36px;
+        color: var(--text-main);
+      }
+
+      .cat-icon-box img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .cat-name {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--text-main);
+        line-height: 1.4;
+        margin-top: 16px;
+        text-align: center;
+      }
+
+      /* شركاؤنا */
+      .partner-section {
+        background-color: #0f0f10;
+        color: #fff;
+        border-top: 1px solid rgba(255, 255, 255, 0.07);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+        padding: 48px 16px;
+      }
+
+      .partner-card {
+        max-width: 900px;
+        background-color: #000;
+        border-radius: var(--radius-xl);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: var(--shadow-deep);
+        padding: 24px 24px 28px;
+        margin: 0 auto;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      @media (min-width: 768px) {
+        .partner-card {
+          flex-direction: row;
+          align-items: flex-start;
+          text-align: right;
+        }
+      }
+
+      .partner-text {
+        flex: 1;
+      }
+
+      .partner-head {
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 1.4;
+        color: #fff;
+        margin: 0 0 8px;
+      }
+
+      .partner-desc {
+        font-size: 13px;
+        line-height: 1.6;
+        color: rgba(255, 255, 255, 0.8);
+        margin: 0;
+      }
+
+      .partner-action {
+        flex-shrink: 0;
+        text-align: center;
+      }
+
+      .partner-btn {
+        display: inline-block;
+        min-width: 180px;
+        text-align: center;
+        background-color: #fff;
+        color: #000;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 1.2;
+        text-decoration: none;
+        padding: 12px 16px;
+        border-radius: var(--radius-md);
+        border: 1px solid #fff;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+        transition: all var(--transition-fast);
+      }
+
+      .partner-btn:hover {
+        background-color: #000;
+        color: #fff;
+        border-color: #fff;
+        box-shadow: 0 28px 48px rgba(0, 0, 0, 0.8);
+      }
+
+      /* FOOTER */
+      .footer-section {
+        background-color: #f1f2f4;
+        border-top: 1px solid var(--border-light);
+        padding: 40px 16px;
+        color: var(--text-main);
+        font-size: 13px;
+        line-height: 1.5;
+      }
+
+      .footer-grid {
+        max-width: 1100px;
+        margin: 0 auto;
+        display: grid;
+        gap: 24px;
+      }
+
+      @media (min-width: 768px) {
+        .footer-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      .footer-block-title {
+        font-weight: 700;
+        font-size: 14px;
+        color: var(--text-main);
+        margin-bottom: 8px;
+      }
+
+      .footer-desc {
+        font-size: 12px;
+        color: var(--text-muted);
+        line-height: 1.5;
+        margin-bottom: 16px;
+        max-width: 320px;
+      }
+
+      .footer-links {
+        display: grid;
+        gap: 6px;
+      }
+
+      .footer-link {
+        font-size: 12px;
+        color: var(--text-main);
+        text-decoration: none;
+        line-height: 1.4;
+        transition: color var(--transition-fast);
+      }
+
+      .footer-link:hover {
+        color: #000;
+        text-decoration: underline;
+      }
+
+      .footer-info-line {
+        font-size: 12px;
+        color: var(--text-muted);
+        line-height: 1.5;
+        margin-bottom: 4px;
+      }
+
+      .footer-info-line .label {
+        font-weight: 600;
+        color: var(--text-main);
+      }
+
+      .footer-copy {
+        margin-top: 24px;
+        font-size: 12px;
+        color: var(--text-muted);
+        line-height: 1.4;
+        text-align: center;
+      }
+
+      .hero-headline,
+      .hero-desc {
+        transition: opacity var(--transition-mid);
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="nav-inner">
+        <a class="nav-left" href="#">
+          <img src="img/img1.png" alt="شعار تسهيل" class="brand-logo-img" />
+          <div class="brand-texts">
+            <div class="brand-name">تسهيل</div>
+            <div class="brand-tagline">حلقة الوصل في عالم البناء</div>
+          </div>
+        </a>
+
+        <div class="nav-middle">
+          <a href="#services" class="nav-link">الخدمات</a>
+          <a href="#partner" class="nav-link">الشركاء</a>
+          <a href="#contact" class="nav-link">تواصل</a>
+        </div>
+
+        <div class="nav-right">
+          <a class="search-pill" href="#">
+            <span>بحث</span>
+            <span class="search-icon">🔍</span>
+          </a>
+          <a class="auth-btn" href="#">تسجيل الدخول / إنشاء حساب</a>
+        </div>
+      </div>
+    </nav>
+
+    <section class="hero-wrapper">
+      <div class="hero-bg" id="heroBg"></div>
+      <div class="hero-overlay"></div>
+
+      <div class="hero-content-area">
+        <div class="hero-card">
+          <h1 class="hero-headline" id="heroTitle">نبني الثقة قبل البناء</h1>
+          <p class="hero-desc" id="heroText">
+            تسهيل هي منصّة تربطك بسرعة مع مزوّدي خدمات البناء، التشطيب، المواد،
+            والكهرباء والسباكة، وكل ما يخص تجهيز منزلك أو مشروعك — في مكان واحد.
+            نوفر الوقت، نختصر البحث، ونحفظ الاتفاق.
+          </p>
+
+          <div class="hero-cta-row">
+            <a class="hero-cta-btn" href="#services">استكشف الخدمات</a>
+            <a class="hero-cta-btn" href="#partner">انضم كمورد</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-controls-bar">
+        <div class="quick-label">
+          عرض سريع
+          <span>＋</span>
+        </div>
+
+        <div class="hero-nav-buttons">
+          <button class="hero-nav-btn" id="prevSlide" aria-label="الشريحة السابقة">
+            ‹
+          </button>
+          <button class="hero-nav-btn" id="nextSlide" aria-label="الشريحة التالية">
+            ›
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="categories-wrapper">
+      <h2 class="section-head">الأقسام الرئيسية</h2>
+      <p class="section-sub">اختر المجال المناسب واطّلع على الشركات المختصة فيه</p>
+
+      <div class="cat-grid">
+        <a href="category-design.html" class="cat-card">
+          <div class="cat-icon-box">🏗️</div>
+          <div class="cat-name">التصميم والاستشارات الهندسية</div>
+        </a>
+        <a href="category-construction.html" class="cat-card">
+          <div class="cat-icon-box">🧱</div>
+          <div class="cat-name">البناء والتنفيذ</div>
+        </a>
+        <a href="category-materials.html" class="cat-card">
+          <div class="cat-icon-box">📦</div>
+          <div class="cat-name">المواد والأثاث</div>
+        </a>
+        <a href="category-mep.html" class="cat-card">
+          <div class="cat-icon-box">🔌</div>
+          <div class="cat-name">الأعمال الكهربائية والميكانيكية والسباكة</div>
+        </a>
+        <a href="category-finishing.html" class="cat-card">
+          <div class="cat-icon-box">🎨</div>
+          <div class="cat-name">التشطيب الداخلي</div>
+        </a>
+        <a href="category-smart-energy.html" class="cat-card">
+          <div class="cat-icon-box">💡</div>
+          <div class="cat-name">الأنظمة الذكية والطاقة</div>
+        </a>
+      </div>
+    </section>
+
+    <section id="partner" class="partner-section">
+      <div class="partner-card">
+        <div class="partner-text">
+          <h3 class="partner-head">هل تمتلك شركة أو معرض مواد أو خدمات بناء؟</h3>
+          <p class="partner-desc">
+            انضم إلى تسهيل. اعرض خدماتك ومنتجاتك للعملاء الجادّين، واجعلهم يجدونك
+            بسهولة ويطلبوا الأسعار مباشرة. نحن لا ننفذ العمل بدلاً عنك — نحن نوصلك
+            بالعميل المناسب.
+          </p>
+        </div>
+        <div class="partner-action">
+          <a class="partner-btn" href="request.html">سجل منشأتك الآن</a>
+        </div>
+      </div>
+    </section>
+
+    <footer id="contact" class="footer-section">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-block-title">تسهيل</div>
+          <div class="footer-desc">
+            منصّة تربط الأفراد والشركات بموردي البناء، التنفيذ، التشطيب، المواد،
+            والأثاث الجاهز. نوثق الاتفاق ونحدد المدة المتوقعة لتقليل التأخير
+            والنزاعات.
+          </div>
+          <div class="footer-links">
+            <a href="#" class="footer-link">عن المنصّة</a>
+            <a href="#" class="footer-link">كيف نعمل</a>
+            <a href="#" class="footer-link">الأسئلة الشائعة</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-block-title">معلومات التواصل</div>
+          <div class="footer-info-line">
+            <span class="label">الاسم التجاري:</span> تسهيل لخدمات البناء
+          </div>
+          <div class="footer-info-line">
+            <span class="label">هاتف:</span> +968 0000 0000
+          </div>
+          <div class="footer-info-line">
+            <span class="label">البريد:</span> info@tasheel.example
+          </div>
+          <div class="footer-info-line">
+            <span class="label">صندوق البريد:</span> 1234 مسقط
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-block-title">روابط سريعة</div>
+          <div class="footer-links">
+            <a href="request.html" class="footer-link">سجل كشريك</a>
+            <a href="#" class="footer-link">شروط الاستخدام</a>
+            <a href="#" class="footer-link">سياسة الخصوصية</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-copy">© 2025 تسهيل. جميع الحقوق محفوظة.</div>
+    </footer>
+
+    <script>
+      const slides = [
+        {
+          title: "نبني الثقة قبل البناء",
+          text: "تسهيل هي منصّة تربطك بسرعة مع مزوّدي خدمات البناء، التشطيب، المواد، والكهرباء والسباكة، وكل ما يخص تجهيز منزلك أو مشروعك — في مكان واحد. نوفر الوقت، نختصر البحث، ونحفظ الاتفاق.",
+          bg: "bk1.jpg",
+        },
+        {
+          title: "من نحن",
+          text: "نحن حلقة الوصل بين العميل ومزود الخدمة. نحن لا ننفذ العمل، بل ننظم التواصل ونوضح التوقعات ونساعد الطرفين يوصلوا لاتفاق واضح بزمن وكلفة.",
+          bg: "bk2.jpg",
+        },
+        {
+          title: "المشكلة اليوم",
+          text: "التأخير، عدم الوضوح، واختيار مقاول غير مناسب فقط لأنك ما لقيت بديل بسرعة. السوق مجزأ، والمعلومة صعب توصلها في وقتها.",
+          bg: "bk3.jpg",
+        },
+        {
+          title: "رؤيتنا",
+          text: "سوق بناء منظم في عُمان: مزودين موثوقين بملفات أعمالهم، تقييم شفاف بعد كل مشروع، واتفاق مكتوب بزمن التنفيذ المتوقع.",
+          bg: "bk4.jpg",
+        },
+        {
+          title: "أهدافنا القادمة",
+          text: "تجميع أكبر عدد من الموردين والشركات، تقديم نظام توثيق بسيط للاتفاق (القد) بزمن تسليم واضح، وتسهيل التواصل الآمن بين الطرفين.",
+          bg: "bk5.jpg",
+        },
+      ];
+
+      let currentSlide = 0;
+      const heroBg = document.getElementById("heroBg");
+      const heroTitle = document.getElementById("heroTitle");
+      const heroText = document.getElementById("heroText");
+
+      function renderSlide(index) {
+        const slide = slides[index];
+        heroTitle.style.opacity = "0";
+        heroText.style.opacity = "0";
+
+        setTimeout(() => {
+          heroTitle.textContent = slide.title;
+          heroText.textContent = slide.text;
+          heroBg.style.backgroundImage = `url('${slide.bg}')`;
+
+          setTimeout(() => {
+            heroTitle.style.opacity = "1";
+            heroText.style.opacity = "1";
+          }, 50);
+        }, 500);
+      }
+
+      document.getElementById("prevSlide").addEventListener("click", () => {
+        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+        renderSlide(currentSlide);
+      });
+
+      document.getElementById("nextSlide").addEventListener("click", () => {
+        currentSlide = (currentSlide + 1) % slides.length;
+        renderSlide(currentSlide);
+      });
+
+      renderSlide(currentSlide);
+    </script>
+  </body>
+</html>

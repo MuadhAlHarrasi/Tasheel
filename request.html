@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تسهيل | تسجيل منشأة</title>
+
+<style>
+:root {
+  --bg-page:#f8f9fa;
+  --text-main:#1a1a1a;
+  --text-muted:#6c757d;
+  --border-light:rgba(0,0,0,0.08);
+  --border-strong:rgba(0,0,0,0.15);
+  --radius-xl:1.25rem;
+  --radius-lg:1rem;
+  --radius-md:0.75rem;
+  --radius-pill:999px;
+  --shadow-card:0 24px 48px rgba(0,0,0,0.08);
+  --shadow-soft:0 16px 32px rgba(0,0,0,0.06);
+  --accent-dark:#000;
+  --accent-btn:#000;
+  --accent-btn-text:#fff;
+  --accent-btn-hover-bg:#fff;
+  --accent-btn-hover-text:#000;
+}
+
+*{
+  box-sizing:border-box;
+  -webkit-font-smoothing:antialiased;
+}
+
+body{
+  margin:0;
+  background-color:var(--bg-page);
+  color:var(--text-main);
+  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif;
+  line-height:1.5;
+  text-rendering:optimizeLegibility;
+}
+
+img{max-width:100%;display:block;}
+
+.container{
+  width:100%;
+  max-width:1100px;
+  padding:0 16px;
+  margin:0 auto;
+}
+
+/* HEADER / NAV */
+.header-bar{
+  background-color:#fff;
+  border-bottom:1px solid var(--border-light);
+  padding:12px 16px;
+}
+.header-inner{
+  max-width:1100px;
+  margin:0 auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  row-gap:12px;
+}
+
+.header-left{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  text-decoration:none;
+  color:inherit;
+}
+.logo-img{
+  width:44px;
+  height:44px;
+  border-radius:8px;
+  background:#fff;
+  border:1px solid rgba(0,0,0,0.15);
+  box-shadow:0 16px 32px rgba(0,0,0,0.07);
+  object-fit:cover;
+}
+.brand-block{
+  display:flex;
+  flex-direction:column;
+}
+.brand-name{
+  font-size:15px;
+  font-weight:700;
+  color:var(--text-main);
+  line-height:1.2;
+}
+.brand-tagline{
+  font-size:12px;
+  color:var(--text-muted);
+  line-height:1.3;
+}
+
+/* optional on right */
+.header-right{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  align-items:center;
+}
+.header-auth-btn{
+  font-size:13px;
+  font-weight:600;
+  border-radius:var(--radius-pill);
+  border:1px solid #000;
+  background-color:#fff;
+  color:#000;
+  line-height:1.2;
+  padding:10px 16px;
+  text-decoration:none;
+  box-shadow:0 10px 24px rgba(0,0,0,0.07);
+  transition:all .18s ease;
+}
+.header-auth-btn:hover{
+  background-color:#000;
+  color:#fff;
+}
+
+/* HERO TOP TEXT */
+.top-intro{
+  padding:32px 16px 24px;
+  text-align:center;
+}
+.intro-inner{
+  max-width:700px;
+  margin:0 auto;
+}
+.page-title{
+  font-size:20px;
+  font-weight:700;
+  line-height:1.3;
+  margin:0 0 12px;
+  color:var(--text-main);
+}
+.page-desc{
+  font-size:13px;
+  line-height:1.6;
+  color:var(--text-muted);
+  margin:0;
+}
+
+/* FORM SECTION */
+.form-wrap-outer{
+  padding:0 16px 48px;
+}
+.form-card{
+  max-width:700px;
+  margin:24px auto 0;
+  background-color:#fff;
+  border:1px solid var(--border-light);
+  border-radius:var(--radius-xl);
+  box-shadow:var(--shadow-card);
+  padding:24px 20px 28px;
+}
+@media(min-width:600px){
+  .form-card{
+    padding:28px 24px 32px;
+  }
+}
+
+.form-head{
+  font-size:15px;
+  font-weight:600;
+  line-height:1.4;
+  margin:0 0 8px;
+  color:var(--text-main);
+}
+.form-hint{
+  font-size:12px;
+  line-height:1.5;
+  color:var(--text-muted);
+  margin:0 0 24px;
+}
+
+/* grid fields */
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:16px 16px;
+}
+@media(min-width:600px){
+  .form-grid.two-col{
+    grid-template-columns:1fr 1fr;
+  }
+}
+.field-block{
+  display:flex;
+  flex-direction:column;
+}
+.field-label{
+  font-size:13px;
+  font-weight:500;
+  color:var(--text-main);
+  margin-bottom:6px;
+  line-height:1.4;
+}
+.input-box,
+.select-box,
+.textarea-box{
+  appearance:none;
+  width:100%;
+  border:1px solid var(--border-light);
+  border-radius:var(--radius-md);
+  padding:12px 12px;
+  background-color:#fff;
+  box-shadow:var(--shadow-soft);
+  font-size:13px;
+  line-height:1.4;
+  color:var(--text-main);
+  outline:none;
+  transition:all .18s ease;
+  min-height:44px;
+}
+.input-box:focus,
+.select-box:focus,
+.textarea-box:focus{
+  border-color:var(--border-strong);
+  box-shadow:0 0 0 3px rgba(0,0,0,0.06);
+}
+.textarea-box{
+  resize:vertical;
+  min-height:80px;
+}
+
+/* SUBMIT AREA */
+.submit-area{
+  margin-top:24px;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  row-gap:12px;
+}
+@media(min-width:480px){
+  .submit-area{
+    flex-direction:row;
+    align-items:center;
+    justify-content:space-between;
+  }
+}
+
+.submit-btn{
+  background-color:var(--accent-btn);
+  border:1px solid var(--accent-btn);
+  color:var(--accent-btn-text);
+  border-radius:var(--radius-pill);
+  padding:12px 20px;
+  font-size:14px;
+  font-weight:600;
+  line-height:1.2;
+  cursor:pointer;
+  min-width:180px;
+  box-shadow:0 24px 48px rgba(0,0,0,0.3);
+  transition:all .18s ease;
+}
+.submit-btn:hover{
+  background-color:var(--accent-btn-hover-bg);
+  color:var(--accent-btn-hover-text);
+  border-color:#000;
+}
+
+.submit-note{
+  font-size:11px;
+  line-height:1.5;
+  color:var(--text-muted);
+  max-width:360px;
+}
+
+/* SUCCESS MESSAGE (بعد الإرسال الوهمي) */
+.success-box{
+  display:none;
+  background-color:#eaffea;
+  border:1px solid #55b455;
+  color:#1a4d1a;
+  font-size:13px;
+  line-height:1.5;
+  border-radius:var(--radius-md);
+  padding:12px 14px;
+  margin-top:16px;
+  box-shadow:0 16px 32px rgba(0,0,0,0.05);
+}
+
+/* FOOTER */
+.footer-section{
+  background-color:#f1f2f4;
+  border-top:1px solid var(--border-light);
+  padding:40px 16px;
+  color:var(--text-main);
+  font-size:13px;
+  line-height:1.5;
+}
+.footer-grid{
+  max-width:1100px;
+  margin:0 auto;
+  display:grid;
+  gap:24px;
+}
+@media(min-width:768px){
+  .footer-grid{
+    grid-template-columns:repeat(3,1fr);
+  }
+}
+.footer-block-title{
+  font-weight:700;
+  font-size:14px;
+  color:var(--text-main);
+  margin-bottom:8px;
+}
+.footer-desc{
+  font-size:12px;
+  color:var(--text-muted);
+  line-height:1.5;
+  margin-bottom:16px;
+  max-width:320px;
+}
+.footer-links{
+  display:grid;
+  gap:6px;
+}
+.footer-link{
+  font-size:12px;
+  color:var(--text-main);
+  text-decoration:none;
+  line-height:1.4;
+}
+.footer-link:hover{
+  color:#000;
+  text-decoration:underline;
+}
+.footer-info-line{
+  font-size:12px;
+  color:var(--text-muted);
+  line-height:1.5;
+  margin-bottom:4px;
+}
+.footer-info-line .label{
+  font-weight:600;
+  color:var(--text-main);
+}
+.footer-copy{
+  margin-top:24px;
+  font-size:12px;
+  color:var(--text-muted);
+  line-height:1.4;
+  text-align:center;
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header-bar">
+  <div class="header-inner">
+
+    <a class="header-left" href="index.html">
+      <img src="logo.png" alt="تسهيل" class="logo-img">
+      <div class="brand-block">
+        <div class="brand-name">تسهيل</div>
+        <div class="brand-tagline">منصّة الربط بين العميل والمورد</div>
+      </div>
+    </a>
+
+    <div class="header-right">
+      <a href="#" class="header-auth-btn">تسجيل الدخول / إنشاء حساب</a>
+    </div>
+
+  </div>
+</header>
+
+<!-- INTRO -->
+<section class="top-intro">
+  <div class="intro-inner">
+    <h1 class="page-title">سجّل منشأتك في تسهيل</h1>
+    <p class="page-desc">
+      هذه الخطوة مخصصة للشركات، الورش، المحلات، المعارض، ومقدمي الخدمات
+      (مواد بناء، رخام، مطابخ جاهزة، تشطيب داخلي، كهرباء وسباكة وغيرهم).
+      بعد التسجيل: نعرضك في المنصّة، ونوصلك بعملاء جادّين.
+    </p>
+  </div>
+</section>
+
+<!-- FORM -->
+<section class="form-wrap-outer">
+  <div class="form-card">
+    <h2 class="form-head">بيانات النشاط التجاري</h2>
+    <p class="form-hint">
+      يرجى إدخال معلومات واضحة. هذه المعلومات ستُعرض للعملاء، عشان يختاروك.
+    </p>
+
+    <form id="vendorForm">
+
+      <div class="form-grid two-col">
+        <div class="field-block">
+          <label class="field-label">نوع النشاط</label>
+          <select class="select-box" name="category" required>
+            <option value="">اختر...</option>
+            <option>مواد بناء (إسمنت، حديد، سيراميك...)</option>
+            <option>رخام / مطابخ جاهزة / مغاسل جاهزة</option>
+            <option>تشطيب داخلي وديكور</option>
+            <option>بناء وتنفيذ مشاريع</option>
+            <option>كهرباء / ميكانيك / سباكة</option>
+            <option>أنظمة ذكية / طاقة شمسية</option>
+          </select>
+        </div>
+
+        <div class="field-block">
+          <label class="field-label">اسم المنشأة التجاري</label>
+          <input class="input-box" type="text" name="name" placeholder="مثال: رخام الخليج / حلول التشطيب الداخلي" required>
+        </div>
+      </div>
+
+      <div class="form-grid two-col">
+        <div class="field-block">
+          <label class="field-label">المدينة / الولاية</label>
+          <input class="input-box" type="text" name="city" placeholder="مسقط، صلالة، صحار..." required>
+        </div>
+
+        <div class="field-block">
+          <label class="field-label">رقم التواصل (واتساب)</label>
+          <input class="input-box" type="tel" name="phone" placeholder="+968 --------" required>
+        </div>
+      </div>
+
+      <div class="form-grid two-col">
+        <div class="field-block">
+          <label class="field-label">حساب إنستغرام / موقع ويب (اختياري)</label>
+          <input class="input-box" type="text" name="social" placeholder="@yourshop أو رابط الموقع">
+        </div>
+
+        <div class="field-block">
+          <label class="field-label">ساعات / طريقة التواصل المفضلة</label>
+          <input class="input-box" type="text" name="contact_pref" placeholder="متاح من 9ص - 6م / واتساب أفضل...">
+        </div>
+      </div>
+
+      <div class="form-grid">
+        <div class="field-block">
+          <label class="field-label">ماذا تقدم بالضبط؟</label>
+          <textarea class="textarea-box" name="desc" placeholder="مثال: نوفر رخام طبيعي وصناعي، مغاسل جاهزة، تفصيل حسب المقاس خلال 3 أيام، توصيل داخل مسقط..."></textarea>
+        </div>
+      </div>
+
+      <div class="submit-area">
+        <button class="submit-btn" type="submit">إرسال الطلب</button>
+        <div class="submit-note">
+        </div>
+      </div>
+
+      <div class="success-box" id="successBox">
+        تم استلام طلب التسجيل بنجاح 👌  
+        سنتواصل معك لتأكيد البيانات قبل نشرها في المنصّة.
+      </div>
+
+    </form>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer-section">
+  <div class="footer-grid">
+
+    <div>
+      <div class="footer-block-title">تسهيل</div>
+      <div class="footer-desc">
+        منصّة تربط بين العميل والمورد في عالم البناء والتجهيز.
+        نحن لا ننفذ العمل عنك، لكن نسهّل العثور عليك، نسهّل الاتفاق،
+        ونحفظ سمعتك أمام العملاء.
+      </div>
+      <div class="footer-links">
+        <a href="index.html" class="footer-link">الصفحة الرئيسية</a>
+        <a href="#" class="footer-link">كيف نعمل؟</a>
+        <a href="#" class="footer-link">الأسئلة الشائعة</a>
+      </div>
+    </div>
+
+    <div>
+      <div class="footer-block-title">التواصل</div>
+      <div class="footer-info-line"><span class="label">هاتف:</span> +968 0000 0000</div>
+      <div class="footer-info-line"><span class="label">البريد:</span> info@tasheel.example</div>
+      <div class="footer-info-line"><span class="label">صندوق البريد:</span> 1234 مسقط</div>
+    </div>
+
+    <div>
+      <div class="footer-block-title">روابط قانونية</div>
+      <div class="footer-links">
+        <a href="#" class="footer-link">شروط الاستخدام</a>
+        <a href="#" class="footer-link">سياسة الخصوصية</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-copy">© 2025 تسهيل. جميع الحقوق محفوظة.</div>
+</footer>
+
+<script>
+const form = document.getElementById('vendorForm');
+const successBox = document.getElementById('successBox');
+
+form.addEventListener('submit', function (e) {
+  e.preventDefault();
+
+  // هنا في المنتج الحقيقي بيصير call للباك-إند
+  // حاليا للعرض في الهاكاثون: بس نعرض رسالة نجاح ويقفل الإرسال
+  successBox.style.display = 'block';
+
+  // نقدر بعد نعمل disable للزر عشان يبين "تم"
+  const btn = form.querySelector('.submit-btn');
+  btn.disabled = true;
+  btn.style.opacity = '0.6';
+  btn.textContent = 'تم إرسال الطلب ✓';
+});
+</script>
+
+</body>
+</html>

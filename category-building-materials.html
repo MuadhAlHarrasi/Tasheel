@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>تسهيل | مواد البناء</title>
+
+    <style>
+      :root {
+        --bg-page: #f8f9fa;
+        --text-main: #1a1a1a;
+        --text-muted: #6c757d;
+        --border-light: rgba(0,0,0,0.08);
+        --border-light-strong: rgba(0,0,0,0.15);
+
+        --radius-xl: 1.25rem;
+        --radius-lg: 1rem;
+        --radius-md: 0.75rem;
+        --radius-pill: 999px;
+
+        --shadow-soft: 0 12px 32px rgba(0,0,0,0.06);
+        --shadow-hover: 0 24px 48px rgba(0,0,0,0.08);
+        --shadow-deep: 0 32px 64px rgba(0,0,0,0.55);
+
+        --transition-fast: 0.18s ease;
+        --transition-mid: 0.25s ease;
+
+        --navbar-bg: rgba(0,0,0,0.5);
+        --accent-btn: #d93025;
+
+        --rating-star-color: #f5b301;
+      }
+
+      * {
+        box-sizing: border-box;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      body {
+        margin: 0;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+        background-color: var(--bg-page);
+        color: var(--text-main);
+        line-height: 1.5;
+        text-rendering: optimizeLegibility;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      /* NAVBAR */
+      .navbar {
+        position: relative;
+        z-index: 1000;
+        background-color: var(--navbar-bg);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        color: #fff;
+        border-bottom: 1px solid rgba(255,255,255,0.15);
+        padding: 12px 16px;
+      }
+
+      .nav-inner {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap;
+        row-gap: 12px;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .nav-left {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        color: #fff;
+        text-decoration: none;
+      }
+
+      .brand-logo-img {
+        width: 44px;
+        height: 44px;
+        border-radius: 8px;
+        background: #fff;
+        border: 1px solid rgba(0,0,0,0.15);
+        box-shadow: 0 16px 32px rgba(0,0,0,0.4);
+        object-fit: cover;
+      }
+
+      .brand-texts {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .brand-name {
+        font-size: 15px;
+        line-height: 1.2;
+        font-weight: 700;
+        color: #fff;
+      }
+
+      .brand-tagline {
+        font-size: 12px;
+        line-height: 1.3;
+        color: rgba(255,255,255,0.7);
+      }
+
+      .nav-middle {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        column-gap: 16px;
+        row-gap: 8px;
+        font-size: 13px;
+        color: #fff;
+      }
+
+      .nav-link {
+        color: rgba(255,255,255,0.9);
+        text-decoration: none;
+        line-height: 1.4;
+        font-weight: 500;
+        transition: color var(--transition-fast);
+      }
+
+      .nav-link:hover {
+        color: #fff;
+        text-decoration: underline;
+      }
+
+      .nav-right {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .search-pill {
+        background-color: #fff;
+        color: #000;
+        border-radius: var(--radius-pill);
+        padding: 10px 16px;
+        min-height: 40px;
+        min-width: 140px;
+        font-size: 13px;
+        font-weight: 500;
+        line-height: 1.2;
+        border: 1px solid #fff;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        cursor: pointer;
+        text-decoration: none;
+        transition: all var(--transition-fast);
+      }
+
+      .search-pill:hover {
+        background-color: var(--bg-page);
+        border-color: var(--bg-page);
+      }
+
+      .search-pill span {
+        white-space: nowrap;
+        color: #000;
+      }
+
+      .search-icon {
+        font-size: 14px;
+        line-height: 1;
+        color: #000;
+      }
+
+      .auth-btn {
+        font-size: 13px;
+        font-weight: 600;
+        border-radius: var(--radius-pill);
+        border: 1px solid #fff;
+        background-color: transparent;
+        color: #fff;
+        padding: 10px 16px;
+        line-height: 1.2;
+        text-decoration: none;
+        box-shadow: 0 10px 24px rgba(0,0,0,0.4);
+        transition: all var(--transition-fast);
+      }
+
+      .auth-btn:hover {
+        background-color: #fff;
+        color: #000;
+        border-color: #fff;
+      }
+
+      /* PAGE HERO */
+      .page-hero {
+        background-color: #fff;
+        border-bottom: 1px solid var(--border-light);
+        padding: 32px 16px;
+        text-align: center;
+      }
+
+      .page-hero-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+
+      .page-title {
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--text-main);
+        line-height: 1.3;
+        margin: 0 0 8px;
+      }
+
+      .page-desc {
+        font-size: 13px;
+        color: var(--text-muted);
+        line-height: 1.5;
+        max-width: 520px;
+        margin: 0 auto;
+      }
+
+      /* GRID WRAPPER */
+      .vendor-section {
+        background-color: #fff;
+        border-bottom: 1px solid var(--border-light);
+        padding: 32px 16px 48px;
+      }
+
+      .vendor-grid {
+        max-width: 1100px;
+        margin-left: auto;
+        margin-right: auto;
+        display: grid;
+        gap: 24px;
+      }
+
+      @media(min-width:768px) {
+        .vendor-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      /* LINK WRAPS THE CARD */
+      .vendor-card-link {
+        text-decoration: none;
+        color: inherit;
+        display: block;
+      }
+
+      .vendor-card {
+        background-color: #fff;
+        border: 1px solid var(--border-light);
+        border-radius: var(--radius-xl);
+        box-shadow: var(--shadow-soft);
+        padding: 20px 20px 16px;
+        min-height: 240px;
+        display: flex;
+        flex-direction: column;
+        transition: all var(--transition-mid);
+        cursor: pointer;
+      }
+
+      .vendor-card:hover {
+        box-shadow: var(--shadow-hover);
+        border-color: var(--border-light-strong);
+        transform: translateY(-2px);
+      }
+
+      .vendor-top {
+        display: flex;
+        align-items: flex-start;
+        gap: 16px;
+      }
+
+      .vendor-logo {
+        width: 64px;
+        height: 64px;
+        border-radius: var(--radius-lg);
+        background-color: #f8f9fa;
+        border: 1px solid var(--border-light);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+        overflow: hidden;
+        flex-shrink: 0;
+      }
+
+      .vendor-logo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .vendor-main-info {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .vendor-name {
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--text-main);
+        line-height: 1.4;
+        margin: 0 0 4px;
+      }
+
+      /* RATING ROW */
+      .vendor-rating {
+        font-size: 13px;
+        font-weight: 600;
+        line-height: 1.4;
+        color: var(--text-main);
+        margin-bottom: 6px;
+
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .rating-stars {
+        font-size: 14px;
+        line-height: 1;
+        color: var(--rating-star-color);
+        font-weight: 700;
+      }
+
+      .rating-score {
+        font-size: 12px;
+        line-height: 1.4;
+        color: var(--text-muted);
+        font-weight: 500;
+      }
+
+      .rating-link {
+        font-size: 12px;
+        line-height: 1.4;
+        font-weight: 500;
+        color: #000;
+        background-color: #f8f9fa;
+        border: 1px solid var(--border-light);
+        border-radius: var(--radius-pill);
+        padding: 4px 8px;
+        text-decoration: none;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.03);
+        transition: all var(--transition-fast);
+      }
+
+      .rating-link:hover {
+        background-color: #000;
+        color: #fff;
+        border-color: #000;
+      }
+
+      .vendor-services {
+        font-size: 13px;
+        line-height: 1.4;
+        color: var(--text-main);
+        margin: 0 0 8px;
+      }
+
+      .vendor-tags-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-bottom: 12px;
+      }
+
+      .vendor-tag {
+        background-color: #f8f9fa;
+        border: 1px solid var(--border-light);
+        color: var(--text-main);
+        font-size: 11px;
+        line-height: 1.2;
+        font-weight: 500;
+        padding: 6px 8px;
+        border-radius: var(--radius-pill);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.03);
+        white-space: nowrap;
+      }
+
+      .vendor-bottom {
+        margin-top: auto;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        row-gap: 12px;
+        column-gap: 12px;
+        align-items: flex-end;
+        border-top: 1px solid var(--border-light);
+        padding-top: 16px;
+      }
+
+      .vendor-meta {
+        font-size: 12px;
+        line-height: 1.4;
+        color: var(--text-muted);
+      }
+
+      .vendor-meta-line {
+        margin-bottom: 4px;
+      }
+
+      .vendor-meta-label {
+        color: var(--text-main);
+        font-weight: 600;
+        font-size: 12px;
+        margin-left: 4px;
+      }
+
+      .vendor-action {
+        flex-shrink: 0;
+      }
+
+      .quote-btn {
+        display: inline-block;
+        background-color: var(--accent-btn);
+        color: #fff;
+        border-radius: var(--radius-md);
+        font-size: 13px;
+        font-weight: 600;
+        line-height: 1.2;
+        text-decoration: none;
+        padding: 10px 14px;
+        border: 0;
+        box-shadow: 0 18px 36px rgba(217,48,37,0.4);
+        transition: all .18s ease;
+      }
+
+      .quote-btn:hover {
+        filter: brightness(1.08);
+      }
+
+      /* PARTNER CTA */
+      .partner-section {
+        background-color: #0f0f10;
+        color: #fff;
+        border-top: 1px solid rgba(255,255,255,0.07);
+        border-bottom: 1px solid rgba(255,255,255,0.07);
+        padding: 48px 16px;
+      }
+
+      .partner-card {
+        max-width: 900px;
+        background-color: #000;
+        border-radius: var(--radius-xl);
+        border: 1px solid rgba(255,255,255,0.08);
+        box-shadow: var(--shadow-deep);
+        padding: 24px 24px 28px;
+        margin: 0 auto;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      @media(min-width:768px) {
+        .partner-card {
+          flex-direction: row;
+          align-items: flex-start;
+          text-align: right;
+        }
+      }
+
+      .partner-text {
+        flex: 1;
+      }
+
+      .partner-head {
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 1.4;
+        color: #fff;
+        margin: 0 0 8px;
+      }
+
+      .partner-desc {
+        font-size: 13px;
+        line-height: 1.6;
+        color: rgba(255,255,255,0.8);
+        margin: 0;
+      }
+
+      .partner-action {
+        flex-shrink: 0;
+        text-align: center;
+      }
+
+      .partner-btn {
+        display: inline-block;
+        min-width: 180px;
+        text-align: center;
+        background-color: #fff;
+        color: #000;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 1.2;
+        text-decoration: none;
+        padding: 12px 16px;
+        border-radius: var(--radius-md);
+        border: 1px solid #fff;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+        transition: all var(--transition-fast);
+      }
+
+      .partner-btn:hover {
+        background-color: #000;
+        color: #fff;
+        border-color: #fff;
+        box-shadow: 0 28px 48px rgba(0,0,0,0.8);
+      }
+
+      /* FOOTER */
+      .footer-section {
+        background-color: #f1f2f4;
+        border-top: 1px solid var(--border-light);
+        padding: 40px 16px;
+        color: var(--text-main);
+        font-size: 13px;
+        line-height: 1.5;
+      }
+
+      .footer-grid {
+        max-width: 1100px;
+        margin: 0 auto;
+        display: grid;
+        gap: 24px;
+      }
+
+      @media(min-width:768px) {
+        .footer-grid {
+          grid-template-columns: repeat(3,1fr);
+        }
+      }
+
+      .footer-block-title {
+        font-weight: 700;
+        font-size: 14px;
+        color: var(--text-main);
+        margin-bottom: 8px;
+      }
+
+      .footer-desc {
+        font-size: 12px;
+        color: var(--text-muted);
+        line-height: 1.5;
+        margin-bottom: 16px;
+        max-width: 320px;
+      }
+
+      .footer-links {
+        display: grid;
+        gap: 6px;
+      }
+
+      .footer-link {
+        font-size: 12px;
+        color: var(--text-main);
+        text-decoration: none;
+        line-height: 1.4;
+        transition: color var(--transition-fast);
+      }
+
+      .footer-link:hover {
+        color: #000;
+        text-decoration: underline;
+      }
+
+      .footer-info-line {
+        font-size: 12px;
+        color: var(--text-muted);
+        line-height: 1.5;
+        margin-bottom: 4px;
+      }
+
+      .footer-info-line .label {
+        font-weight: 600;
+        color: var(--text-main);
+      }
+
+      .footer-copy {
+        margin-top: 24px;
+        font-size: 12px;
+        color: var(--text-muted);
+        line-height: 1.4;
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+      <div class="nav-inner">
+
+        <a class="nav-left" href="index.html">
+          <img src="logo.png" alt="شعار تسهيل" class="brand-logo-img" />
+          <div class="brand-texts">
+            <div class="brand-name">تسهيل</div>
+            <div class="brand-tagline">مواد البناء</div>
+          </div>
+        </a>
+
+        <div class="nav-middle">
+          <a href="index.html#services" class="nav-link">الأقسام</a>
+          <a href="index.html#partner" class="nav-link">انضم كمورد</a>
+          <a href="index.html#contact" class="nav-link">تواصل</a>
+          <a href="about.html" class="nav-link">من نحن</a>
+        </div>
+
+        <div class="nav-right">
+          <a class="search-pill" href="#">
+            <span>بحث</span>
+            <span class="search-icon">🔍</span>
+          </a>
+          <a class="auth-btn" href="#">تسجيل الدخول / إنشاء حساب</a>
+        </div>
+
+      </div>
+    </nav>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+      <div class="page-hero-inner">
+        <h1 class="page-title">مواد البناء</h1>
+        <p class="page-desc">
+          محلات ومعارض لمواد البناء: إسمنت، بلوك، حديد، رخام، سيراميك، وأرضيات.
+          اختر المعرض المناسب أو اطلب استفسار سعر.
+        </p>
+      </div>
+    </section>
+
+    <!-- VENDORS GRID -->
+    <section class="vendor-section">
+      <div class="vendor-grid">
+
+        <!-- Vendor 1 -->
+        <a class="vendor-card-link" href="vendor-details.html">
+          <div class="vendor-card">
+            <div class="vendor-top">
+              <div class="vendor-logo">
+                <img src="shr.jpg" alt="شركة مواد البناء المتحدة" />
+              </div>
+              <div class="vendor-main-info">
+                <div class="vendor-name">شركة مواد البناء المتحدة</div>
+
+                <div class="vendor-rating">
+                  <div class="rating-stars">★★★★★</div>
+                  <div class="rating-score">4.9 / 5</div>
+                  <div class="rating-score">(+120 تقييم)</div>
+                  <span class="rating-link">عرض التقييمات</span>
+                </div>
+
+                <div class="vendor-services">
+                  متجر مواد بناء يوفر إسمنت، بلوك خرسانة، وحديد تسليح.
+                </div>
+
+                <div class="vendor-tags-row">
+                  <div class="vendor-tag">إسمنت</div>
+                  <div class="vendor-tag">بلوك</div>
+                  <div class="vendor-tag">حديد تسليح</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="vendor-bottom">
+              <div class="vendor-meta">
+                <div class="vendor-meta-line">
+                  <span class="vendor-meta-label">الموقع:</span> مسقط
+                </div>
+                <div class="vendor-meta-line">
+                  <span class="vendor-meta-label">المتوفر:</span> شراء مباشر من المعرض
+                </div>
+              </div>
+
+              <div class="vendor-action">
+                <span class="quote-btn">استفسار عن السعر</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Vendor 2 -->
+        <a class="vendor-card-link" href="vendor-gulf.html">
+          <div class="vendor-card">
+            <div class="vendor-top">
+              <div class="vendor-logo">
+                <img src="vendor3.png" alt="مسطحات الخليج" />
+              </div>
+              <div class="vendor-main-info">
+                <div class="vendor-name">مسطحات الخليج</div>
+
+                <div class="vendor-rating">
+                  <div class="rating-stars">★★★★☆</div>
+                  <div class="rating-score">4.7 / 5</div>
+                  <div class="rating-score">(+90 تقييم)</div>
+                  <span class="rating-link">عرض التقييمات</span>
+                </div>
+
+                <div class="vendor-services">
+                  معرض رخام طبيعي وصناعي، مغاسل رخام جاهزة، وتقطيع حسب المقاس.
+                </div>
+
+                <div class="vendor-tags-row">
+                  <div class="vendor-tag">رخام طبيعي</div>
+                  <div class="vendor-tag">رخام صناعي</div>
+                  <div class="vendor-tag">مغاسل جاهزة</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="vendor-bottom">
+              <div class="vendor-meta">
+                <div class="vendor-meta-line">
+                  <span class="vendor-meta-label">الموقع:</span> مطرح
+                </div>
+                <div class="vendor-meta-line">
+                  <span class="vendor-meta-label">الاستخدام:</span> المطابخ • الحمامات • الواجهات
+                </div>
+              </div>
+
+              <div class="vendor-action">
+                <span class="quote-btn">استفسار عن السعر</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Vendor 3 -->
+        <a class="vendor-card-link" href="vendor-flooring.html">
+          <div class="vendor-card">
+            <div class="vendor-top">
+              <div class="vendor-logo">
+                <img src="sdf.png" alt="حلول الأرضيات الحديثة" />
+              </div>
+              <div class="vendor-main-info">
+                <div class="vendor-name">حلول الأرضيات الحديثة</div>
+
+                <div class="vendor-rating">
+                  <div class="rating-stars">★★★★☆</div>
+                  <div class="rating-score">4.3 / 5</div>
+                  <div class="rating-score">(+140 تقييم)</div>
+                  <span class="rating-link">عرض التقييمات</span>
+                </div>
+
+                <div class="vendor-services">
+                  متجر أرضيات: باركيه، فينيل مقاوم للماء، سيراميك أوروبي.
+                </div>
+
+                <div class="vendor-tags-row">
+                  <div class="vendor-tag">أرضيات باركيه</div>
+                  <div class="vendor-tag">فينيل مقاوم للماء</div>
+                  <div class="vendor-tag">سيراميك</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="vendor-bottom">
+              <div class="vendor-meta">
+                <div class="vendor-meta-line">
+                  <span class="vendor-meta-label">الموقع:</span> صلالة
+                </div>
+                <div class="vendor-meta-line">
+                  <span class="vendor-meta-label">الفئة:</span> أرضيات منازل ومحلات تجارية
+                </div>
+              </div>
+
+              <div class="vendor-action">
+                <span class="quote-btn">استفسار عن السعر</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- PARTNER CTA -->
+    <section class="partner-section">
+      <div class="partner-card">
+        <div class="partner-text">
+          <h3 class="partner-head">هل لديك محل أو معرض مواد بناء؟</h3>
+          <p class="partner-desc">
+            أضف محلك في تسهيل ليظهر ضمن القائمة. العملاء يقدروا يوصلوا لك بسهولة
+            ويسألوا عن الأسعار مباشرة. هذا يساعدك توصل للعملاء الجادّين بدل
+            الاتصالات العشوائية.
+          </p>
+        </div>
+
+        <div class="partner-action">
+          <a class="partner-btn" href="request.html">تسجيل محل</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer-section">
+      <div class="footer-grid">
+
+        <div>
+          <div class="footer-block-title">تسهيل</div>
+          <div class="footer-desc">
+            منصّة تجمع محلات مواد البناء، التشطيب، الرخام، الأرضيات،
+            بالإضافة لموردي الخدمات. هدفنا: تختار الجهة الصح من أول مرة.
+          </div>
+          <div class="footer-links">
+            <a href="index.html#contact" class="footer-link">عن المنصّة</a>
+            <a href="index.html#contact" class="footer-link">تواصل معنا</a>
+            <a href="index.html#contact" class="footer-link">الأسئلة الشائعة</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-block-title">معلومات التواصل</div>
+          <div class="footer-info-line"><span class="label">الاسم التجاري:</span> تسهيل </div>
+          <div class="footer-info-line"><span class="label">رقم الهاتف:</span> +968 0000 0000</div>
+          <div class="footer-info-line"><span class="label">البريد الإلكتروني:</span> info@tasheel.example</div>
+          <div class="footer-info-line"><span class="label">صندوق البريد:</span> 1234 مسقط</div>
+        </div>
+
+        <div>
+          <div class="footer-block-title">روابط</div>
+          <div class="footer-links">
+            <a href="request.html" class="footer-link">سجل كمورد</a>
+            <a href="#" class="footer-link">شروط الخدمة</a>
+            <a href="#" class="footer-link">سياسة الخصوصية</a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="footer-copy">© 2025 تسهيل. جميع الحقوق محفوظة.</div>
+    </footer>
+
+  </body>
+</html>
