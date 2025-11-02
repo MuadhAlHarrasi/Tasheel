@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>بيت ذكي بلس | الأنظمة الذكية</title>
+
+<style>
+:root {
+  --bg-page:#f8f9fa;
+  --text-main:#1a1a1a;
+  --text-muted:#6c757d;
+  --border-light:rgba(0,0,0,0.08);
+  --border-light-strong:rgba(0,0,0,0.15);
+  --radius-xl:1.25rem;
+  --radius-lg:1rem;
+  --radius-md:0.75rem;
+  --radius-pill:999px;
+  --shadow-soft:0 12px 32px rgba(0,0,0,0.06);
+  --shadow-card:0 24px 48px rgba(0,0,0,0.12);
+  --shadow-deep:0 32px 64px rgba(0,0,0,0.55);
+  --accent-btn:#d93025;
+  --rating-star:#f5b301;
+}
+
+/* تجهيز أساسي */
+*{
+  box-sizing:border-box;
+  -webkit-font-smoothing:antialiased;
+}
+body{
+  margin:0;
+  background-color:var(--bg-page);
+  color:var(--text-main);
+  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif;
+  line-height:1.6;
+  font-size:20px; /* خط أساسي كبير */
+}
+img{
+  max-width:100%;
+  display:block;
+}
+
+/* كونتينر عام */
+.container{
+  width:100%;
+  max-width:1100px;
+  padding:0 16px;
+  margin:0 auto;
+}
+
+/* هيدر بسيط للعرض */
+.top-header{
+  background-color:#fff;
+  border-bottom:1px solid var(--border-light);
+  box-shadow:0 16px 32px rgba(0,0,0,0.05);
+  padding:20px 0;
+}
+.top-header-row{
+  display:flex;
+  flex-wrap:wrap;
+  row-gap:16px;
+  align-items:center;
+  justify-content:space-between;
+}
+.brand-side{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  text-decoration:none;
+  color:inherit;
+}
+.company-logo{
+  width:70px;
+  height:70px;
+  border-radius:var(--radius-lg);
+  background-color:#fff;
+  border:1px solid var(--border-light);
+  box-shadow:0 16px 32px rgba(0,0,0,0.07);
+  object-fit:cover;
+}
+.brand-text-wrap{
+  display:flex;
+  flex-direction:column;
+}
+.site-name{
+  font-size:22px;
+  font-weight:700;
+  color:var(--text-main);
+  line-height:1.3;
+}
+.site-mini{
+  font-size:16px;
+  color:var(--text-muted);
+  line-height:1.4;
+}
+.header-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+}
+.back-link{
+  background:#fff;
+  border:1px solid #000;
+  color:#000;
+  font-size:18px;
+  font-weight:600;
+  line-height:1.2;
+  border-radius:var(--radius-pill);
+  padding:12px 20px;
+  text-decoration:none;
+  box-shadow:0 10px 24px rgba(0,0,0,0.07);
+  transition:.18s;
+}
+.back-link:hover{
+  background:#000;
+  color:#fff;
+}
+.order-btn-header{
+  background-color:var(--accent-btn);
+  border:0;
+  color:#fff;
+  font-size:18px;
+  font-weight:600;
+  line-height:1.2;
+  border-radius:var(--radius-pill);
+  padding:12px 20px;
+  text-decoration:none;
+  box-shadow:0 18px 36px rgba(217,48,37,0.4);
+  transition:.18s;
+}
+.order-btn-header:hover{
+  filter:brightness(1.07);
+}
+
+/* بروفايل الشركة */
+.profile-section{
+  background-color:#fff;
+  border-bottom:1px solid var(--border-light);
+  padding:32px 0 40px;
+}
+.company-head{
+  font-size:28px;
+  font-weight:700;
+  line-height:1.3;
+  margin:0 0 12px;
+  color:var(--text-main);
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  align-items:flex-start;
+}
+.badge-field{
+  background:#f8f9fa;
+  border:1px solid var(--border-light);
+  border-radius:var(--radius-pill);
+  font-size:16px;
+  line-height:1.3;
+  font-weight:500;
+  color:var(--text-main);
+  padding:6px 12px;
+  white-space:nowrap;
+  box-shadow:0 8px 20px rgba(0,0,0,0.03);
+}
+.company-desc{
+  max-width:800px;
+  font-size:20px;
+  line-height:1.7;
+  color:var(--text-main);
+  margin:0 0 24px;
+  font-weight:400;
+}
+.rating-block{
+  display:flex;
+  flex-wrap:wrap;
+  gap:16px;
+  align-items:center;
+  font-size:18px;
+  margin-bottom:24px;
+}
+.stars{
+  color:var(--rating-star);
+  font-size:22px;
+  font-weight:700;
+  line-height:1;
+}
+.score{
+  font-weight:600;
+  color:var(--text-main);
+}
+.score-note{
+  color:var(--text-muted);
+  font-size:18px;
+}
+.view-reviews-btn{
+  font-size:16px;
+  color:#000;
+  background-color:#f8f9fa;
+  border:1px solid var(--border-light);
+  border-radius:var(--radius-pill);
+  padding:8px 14px;
+  text-decoration:none;
+  font-weight:600;
+  box-shadow:0 8px 20px rgba(0,0,0,0.03);
+  transition:.18s;
+}
+.view-reviews-btn:hover{
+  background-color:#000;
+  color:#fff;
+  border-color:#000;
+}
+
+/* معلومات سريعة */
+.quick-info-grid{
+  display:grid;
+  gap:20px;
+  max-width:900px;
+  margin:0 0 32px;
+}
+@media(min-width:700px){
+  .quick-info-grid{
+    grid-template-columns:1fr 1fr;
+  }
+}
+.info-card{
+  background:#f8f9fa;
+  border:1px solid var(--border-light);
+  border-radius:var(--radius-lg);
+  box-shadow:0 12px 32px rgba(0,0,0,0.04);
+  padding:16px 20px;
+}
+.info-label{
+  font-size:16px;
+  font-weight:600;
+  color:var(--text-main);
+  margin:0 0 8px;
+}
+.info-value{
+  font-size:18px;
+  line-height:1.5;
+  color:var(--text-main);
+  margin:0;
+  font-weight:400;
+}
+
+/* CTA رئيسي */
+.big-cta-block{
+  margin-top:32px;
+  background:#000;
+  color:#fff;
+  border-radius:var(--radius-xl);
+  border:1px solid rgba(255,255,255,0.07);
+  box-shadow:var(--shadow-deep);
+  padding:24px 24px 28px;
+  max-width:900px;
+}
+.big-cta-text{
+  font-size:22px;
+  line-height:1.6;
+  font-weight:600;
+  color:#fff;
+  margin:0 0 16px;
+}
+.order-btn-main{
+  display:inline-block;
+  min-width:220px;
+  text-align:center;
+  background-color:#fff;
+  color:#000;
+  font-size:18px;
+  font-weight:700;
+  line-height:1.2;
+  text-decoration:none;
+  padding:14px 18px;
+  border-radius:var(--radius-md);
+  border:1px solid #fff;
+  box-shadow:0 20px 40px rgba(0,0,0,0.6);
+  transition:.18s;
+}
+.order-btn-main:hover{
+  background-color:#000;
+  color:#fff;
+  border-color:#fff;
+  box-shadow:0 28px 48px rgba(0,0,0,0.8);
+}
+
+/* الخدمات */
+.section-block{
+  background-color:#fff;
+  border-top:1px solid var(--border-light);
+  border-bottom:1px solid var(--border-light);
+  padding:40px 0;
+}
+.section-title{
+  font-size:26px;
+  font-weight:700;
+  line-height:1.4;
+  color:var(--text-main);
+  margin:0 0 20px;
+}
+.services-grid{
+  display:grid;
+  gap:20px;
+  max-width:1000px;
+}
+@media(min-width:800px){
+  .services-grid{
+    grid-template-columns:1fr 1fr;
+  }
+}
+.service-card{
+  background:#fff;
+  border:1px solid var(--border-light);
+  border-radius:var(--radius-xl);
+  box-shadow:var(--shadow-soft);
+  padding:20px 20px 18px;
+}
+.service-name{
+  font-size:20px;
+  font-weight:600;
+  color:var(--text-main);
+  margin:0 0 8px;
+  line-height:1.4;
+}
+.service-desc{
+  font-size:18px;
+  line-height:1.6;
+  color:var(--text-main);
+  margin:0;
+  font-weight:400;
+}
+.service-tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:14px;
+}
+.tag-chip{
+  background-color:#f8f9fa;
+  border:1px solid var(--border-light);
+  color:var(--text-main);
+  font-size:16px;
+  line-height:1.2;
+  font-weight:500;
+  padding:8px 10px;
+  border-radius:var(--radius-pill);
+  box-shadow:0 8px 20px rgba(0,0,0,0.03);
+  white-space:nowrap;
+}
+
+/* المشاريع */
+.projects-wrapper{
+  background-color:#fff;
+  border-top:1px solid var(--border-light);
+  padding:40px 0 60px;
+}
+
+/* قسم مشاريع منجزة وقيد التنفيذ */
+.project-section-block{
+  max-width:1100px;
+  margin:0 auto 40px;
+  border:1px solid var(--border-light);
+  border-radius:var(--radius-xl);
+  background:#fff;
+  box-shadow:var(--shadow-card);
+  padding:24px 24px 20px;
+}
+.project-title{
+  font-size:24px;
+  font-weight:700;
+  color:var(--text-main);
+  margin:0 0 16px;
+  line-height:1.4;
+}
+.project-subtext{
+  font-size:18px;
+  line-height:1.6;
+  color:var(--text-muted);
+  font-weight:400;
+  margin:0 0 20px;
+}
+
+/* لستة المشاريع */
+.project-list{
+  display:grid;
+  gap:16px;
+}
+.project-item{
+  background:#f8f9fa;
+  border:1px solid var(--border-light);
+  border-radius:var(--radius-lg);
+  padding:16px 20px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.03);
+}
+.project-line-title{
+  font-size:20px;
+  font-weight:600;
+  line-height:1.4;
+  color:var(--text-main);
+  margin:0 0 6px;
+}
+.project-line-detail{
+  font-size:18px;
+  line-height:1.5;
+  color:var(--text-main);
+  margin:0 0 4px;
+  font-weight:400;
+}
+.project-line-meta{
+  font-size:16px;
+  line-height:1.4;
+  color:var(--text-muted);
+  margin:0;
+}
+
+/* فوتر بسيط */
+.footer-section{
+  background-color:#f1f2f4;
+  border-top:1px solid var(--border-light);
+  padding:40px 0;
+  color:var(--text-main);
+  font-size:16px;
+  line-height:1.5;
+  margin-top:40px;
+}
+.footer-grid{
+  max-width:1100px;
+  margin:0 auto;
+  display:grid;
+  gap:24px;
+}
+@media(min-width:768px){
+  .footer-grid{
+    grid-template-columns:repeat(3,1fr);
+  }
+}
+.footer-block-title{
+  font-weight:700;
+  font-size:18px;
+  color:var(--text-main);
+  margin-bottom:8px;
+}
+.footer-desc{
+  font-size:16px;
+  color:var(--text-muted);
+  line-height:1.6;
+  margin-bottom:16px;
+  max-width:360px;
+  font-weight:400;
+}
+.footer-info-line{
+  font-size:16px;
+  color:var(--text-muted);
+  line-height:1.5;
+  margin-bottom:6px;
+}
+.footer-info-line .label{
+  font-weight:600;
+  color:var(--text-main);
+}
+.footer-copy{
+  margin-top:24px;
+  font-size:14px;
+  color:var(--text-muted);
+  line-height:1.4;
+  text-align:center;
+}
+</style>
+</head>
+
+<body>
+
+<!-- الهيدر -->
+<header class="top-header">
+  <div class="container">
+    <div class="top-header-row">
+
+      <a class="brand-side" href="index.html">
+        <img src="sm.png" alt="بيت ذكي بلس" class="company-logo">
+        <div class="brand-text-wrap">
+          <div class="site-name">بيت ذكي بلس</div>
+          <div class="site-mini">حلول المنزل الذكي المتكاملة</div>
+        </div>
+      </a>
+
+      <div class="header-actions">
+        <a class="back-link" href="smart-home.html">رجوع للقائمة</a>
+        <a class="order-btn-header" href="#">طلب الخدمة الآن</a>
+      </div>
+
+    </div>
+  </div>
+</header>
+
+<!-- بروفايل الشركة -->
+<section class="profile-section">
+  <div class="container">
+
+    <h1 class="company-head">
+      بيت ذكي بلس
+      <span class="badge-field">منازل ذكية</span>
+      <span class="badge-field">تحكم مركزي للبيت</span>
+    </h1>
+
+    <p class="company-desc">
+      شركة متخصصة في تحويل المنازل العادية إلى منازل ذكية بالكامل — إضاءة، تكييف،
+      أقفال الأبواب، الستائر، الحساسات الأمنية، وكاميرات المراقبة — كل شيء من
+      تطبيق واحد. الفريق يركب الأنظمة بدون تكسير كبير وبدون ما تحتاج تعيد تأسيس
+      الكهرباء من جديد. الخدمة موجهة لفلل جديدة أو بيوت جاهزة وساكنة حالياً.
+    </p>
+
+    <div class="rating-block">
+      <div class="stars">★★★★★</div>
+      <div class="score">4.8 / 5</div>
+      <div class="score-note">(+86 تقييم)</div>
+      <a class="view-reviews-btn" href="#">عرض آراء العملاء</a>
+    </div>
+
+    <div class="quick-info-grid">
+
+      <div class="info-card">
+        <div class="info-label">الموقع</div>
+        <div class="info-value">مسقط - خدمات تغطي مسقط، السيب، وبركاء</div>
+      </div>
+
+      <div class="info-card">
+        <div class="info-label">نطاق الخدمة</div>
+        <div class="info-value">منازل سكنية / شقق / مكاتب صغيرة</div>
+      </div>
+
+      <div class="info-card">
+        <div class="info-label">مدة التنفيذ المعتادة</div>
+        <div class="info-value">من يوم واحد إلى 3 أيام (حسب حجم الباقة)</div>
+      </div>
+
+      <div class="info-card">
+        <div class="info-label">التواصل</div>
+        <div class="info-value">طلب عرض السعر المباشر من المنصّة</div>
+      </div>
+
+    </div>
+
+    <div class="big-cta-block">
+      <div class="big-cta-text">
+        هل تريد نفس النظام في بيتك؟ أرسل لنا تفاصيل البيت (دور / دورين، عدد الغرف)
+        ويصلك عرض مبدئي.
+      </div>
+      <a class="order-btn-main" href="request-quote-beiti-plus.html">طلب تسعيرة الآن</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- الخدمات اللي يقدمها -->
+<section class="section-block">
+  <div class="container">
+    <h2 class="section-title">الخدمات الرئيسية</h2>
+
+    <div class="services-grid">
+
+      <div class="service-card">
+        <div class="service-name">التحكم في الإضاءة والتكييف</div>
+        <div class="service-desc">
+          تحكم كامل من الجوال في الإنارة، درجات التكييف، وسيناريوهات جاهزة
+          (وضع النوم، وضع السفر، وضع الضيوف). تقدر تشغل / تطفي كل شي بضغطة وحدة.
+        </div>
+        <div class="service-tags">
+          <div class="tag-chip">تحكم من التطبيق</div>
+          <div class="tag-chip">مؤقتات ذكية</div>
+          <div class="tag-chip">حفظ استهلاك الكهرباء</div>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-name">أقفال وأمان المنزل</div>
+        <div class="service-desc">
+          أقفال أبواب ذكية ببصمة / كود، حساسات حركة وفتح أبواب،
+          تنبيه فوري في حال محاولة دخول غير مصرح بها. مناسب خصوصاً للفلل
+          اللي تكون فاضية أوقات السفر.
+        </div>
+        <div class="service-tags">
+          <div class="tag-chip">قفل ببصمة</div>
+          <div class="tag-chip">تنبيه على الهاتف</div>
+          <div class="tag-chip">سجل دخول وخروج</div>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-name">الستائر والستائر الدوارة (Roller)</div>
+        <div class="service-desc">
+          رفع وتنزيل الستائر تلقائياً حسب الشمس أو حسب جدول يومي.
+          راحة يومية + تقليل حرارة الشمس داخل الغرف.
+        </div>
+        <div class="service-tags">
+          <div class="tag-chip">تحكم صوتي</div>
+          <div class="tag-chip">جدولة تلقائية</div>
+          <div class="tag-chip">حماية الأثاث من الشمس</div>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-name">لوحة تحكم موحدة</div>
+        <div class="service-desc">
+          بدل 5 تطبيقات مختلفة، كل البيت على Dashboard واحدة.
+          هذه النقطة أكثر شي العملاء يمدحوها لأنها تبسّط حياتهم.
+        </div>
+        <div class="service-tags">
+          <div class="tag-chip">واجهة سهلة</div>
+          <div class="tag-chip">كل الغرف في شاشة وحده</div>
+          <div class="tag-chip">مناسب للعائلة</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- المشاريع -->
+<section class="projects-wrapper">
+
+  <!-- مشاريع منجزة -->
+  <div class="project-section-block">
+    <h2 class="project-title">مشاريع منجزة</h2>
+    <p class="project-subtext">
+      أمثلة على بيوت تم تنفيذها فعلاً. الهدف إنك تشوف نوع العميل اللي يشتغلوا معاه.
+    </p>
+
+    <div class="project-list">
+
+      <div class="project-item">
+        <div class="project-line-title">فيلا خاصة - المعبيلة الجنوبية</div>
+        <p class="project-line-detail">
+          تنفيذ نظام تحكم بالإضاءة والتكييف في كامل الدور الأرضي + أقفال ذكية للمدخل.
+        </p>
+        <p class="project-line-meta">
+          العميل: عائلة خاصة / مساحة: ~270 م² / المدة: يومين
+        </p>
+      </div>
+
+      <div class="project-item">
+        <div class="project-line-title">شقة مفروشة للإيجار - الخوض</div>
+        <p class="project-line-detail">
+          تهيئة شقة Airbnb بتحكم ذكي بالأقفال (دخول بكود مؤقت)،
+          وتحكم بالمكيف عن بعد لتقليل الفاتورة.
+        </p>
+        <p class="project-line-meta">
+          المالك: مستثمر عقاري / الهدف: تقليل الهدر بالكهرباء
+        </p>
+      </div>
+
+      <div class="project-item">
+        <div class="project-line-title">مكتب إداري صغير - السيب الصناعية</div>
+        <p class="project-line-detail">
+          ربط الإضاءة والتكييف في 4 مكاتب وغرفة اجتماع في تطبيق واحد،
+          مع جدول تشغيل وإطفاء تلقائي.
+        </p>
+        <p class="project-line-meta">
+          التعاقد مع: شركة صيانة معدات كهربائية
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- مشاريع قيد التنفيذ -->
+  <div class="project-section-block">
+    <h2 class="project-title">مشاريع جارية الآن</h2>
+    <p class="project-subtext">
+      هذه المشاريع تحت التركيب أو في مرحلة التسعير/الإعداد. الهدف إنك تعرف إن الشركة
+      شغالة حالياً، مش مجرد إعلان.
+    </p>
+
+    <div class="project-list">
+
+      <div class="project-item">
+        <div class="project-line-title">مجمع سكني (4 فلل متجاورة) - بركاء</div>
+        <p class="project-line-detail">
+          باقة "أمان الأسرة": أقفال ذكية + حساسات فتح الأبواب + إشعارات على الهاتف
+          لولي الأمر في حالة فتح الباب بعد الساعة 11 مساءً.
+        </p>
+        <p class="project-line-meta">
+          جهة التعاقد: مقاول بناء محلي / حالة: قيد التركيب
+        </p>
+      </div>
+
+      <div class="project-item">
+        <div class="project-line-title">فندق شقق فندقية صغيرة - مسقط</div>
+        <p class="project-line-detail">
+          نظام دخول بكود مؤقت لكل نزيل + متابعة التكييف عن بُعد لتقليل الاستهلاك
+          بين النزلاء.
+        </p>
+        <p class="project-line-meta">
+          جهة التعاقد: مستثمر ضيافة / حالة: في مرحلة الإعداد
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+</section>
+
+<!-- فوتر -->
+<footer class="footer-section">
+  <div class="footer-grid">
+
+    <div>
+      <div class="footer-block-title">تسهيل</div>
+      <div class="footer-desc">
+        منصّة تربط أصحاب المنازل والشركات بموردي الأنظمة الذكية، الطاقة،
+        التشطيب، والمواد. هدفنا تبسيط الوصول لمورد موثوق بدون ضياع وقت.
+      </div>
+    </div>
+
+    <div>
+      <div class="footer-block-title">تواصل</div>
+      <div class="footer-info-line">
+        <span class="label">الهاتف:</span> +968 0000 0000
+      </div>
+      <div class="footer-info-line">
+        <span class="label">البريد:</span> info@tasheel.example
+      </div>
+      <div class="footer-info-line">
+        <span class="label">الموقع:</span> مسقط، عُمان
+      </div>
+    </div>
+
+    <div>
+      <div class="footer-block-title">روابط</div>
+      <div class="footer-info-line">
+        <span class="label">المنصّة الرئيسية:</span> index.html
+      </div>
+      <div class="footer-info-line">
+        <span class="label">القسم:</span> الأنظمة الذكية والطاقة
+      </div>
+      <div class="footer-info-line">
+        <span class="label">سجل شركتك معنا:</span> request.html
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-copy">© 2025 تسهيل. جميع الحقوق محفوظة.</div>
+</footer>
+
+</body>
+</html>

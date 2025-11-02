@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>تسهيل | تعرّف علينا</title>
+
+<style>
+:root {
+  --bg-page:#f8f9fa;
+  --text-main:#1a1a1a;
+  --text-muted:#6c757d;
+  --border-light:rgba(0,0,0,0.08);
+  --border-light-strong:rgba(0,0,0,0.15);
+
+  --radius-xl:1.25rem;
+  --radius-lg:1rem;
+  --radius-md:0.75rem;
+  --radius-pill:999px;
+
+  --shadow-soft:0 12px 32px rgba(0,0,0,0.06);
+  --shadow-card:0 24px 48px rgba(0,0,0,0.14);
+  --shadow-deep:0 32px 64px rgba(0,0,0,0.55);
+
+  --transition-fast:.18s ease;
+  --transition-mid:.25s ease;
+
+  --navbar-bg:rgba(0,0,0,0.5);
+  --hero-card-bg:rgba(0,0,0,0.3);
+}
+
+/* RESET BASICS */
+* {
+  box-sizing:border-box;
+  -webkit-font-smoothing:antialiased;
+}
+body {
+  margin:0;
+  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif;
+  background-color:var(--bg-page);
+  color:var(--text-main);
+  line-height:1.6;
+  text-rendering:optimizeLegibility;
+}
+img {
+  max-width:100%;
+  display:block;
+}
+
+/* NAVBAR (نفس الهوم) */
+.navbar {
+  position:relative;
+  z-index:1000;
+  background-color:var(--navbar-bg);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  color:#fff;
+  border-bottom:1px solid rgba(255,255,255,0.15);
+  padding:12px 16px;
+}
+.nav-inner {
+  width:100%;
+  max-width:1200px;
+  margin:0 auto;
+  display:flex;
+  flex-wrap:wrap;
+  row-gap:12px;
+  align-items:center;
+  justify-content:space-between;
+}
+.nav-left {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  color:#fff;
+  text-decoration:none;
+}
+.brand-logo-img {
+  width:44px;
+  height:44px;
+  border-radius:8px;
+  background:#fff;
+  border:1px solid rgba(0,0,0,0.15);
+  box-shadow:0 16px 32px rgba(0,0,0,0.4);
+  object-fit:cover;
+}
+.brand-texts {
+  display:flex;
+  flex-direction:column;
+}
+.brand-name {
+  font-size:15px;
+  line-height:1.2;
+  font-weight:700;
+  color:#fff;
+}
+.brand-tagline {
+  font-size:12px;
+  line-height:1.3;
+  color:rgba(255,255,255,0.7);
+}
+.nav-middle {
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:16px;
+  color:#fff;
+  font-size:13px;
+}
+.nav-link {
+  color:rgba(255,255,255,0.9);
+  text-decoration:none;
+  line-height:1.4;
+  font-weight:500;
+  transition:color var(--transition-fast);
+}
+.nav-link:hover {
+  color:#fff;
+  text-decoration:underline;
+}
+.nav-right {
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:8px;
+}
+.search-pill {
+  background-color:#fff;
+  color:#000;
+  border-radius:var(--radius-pill);
+  padding:10px 16px;
+  min-height:40px;
+  min-width:140px;
+  font-size:13px;
+  font-weight:500;
+  line-height:1.2;
+  border:1px solid #fff;
+  box-shadow:0 20px 40px rgba(0,0,0,0.5);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  cursor:pointer;
+  text-decoration:none;
+  transition:all var(--transition-fast);
+}
+.search-pill:hover {
+  background-color:var(--bg-page);
+  border-color:var(--bg-page);
+}
+.search-pill span {
+  white-space:nowrap;
+  color:#000;
+}
+.search-icon {
+  font-size:14px;
+  line-height:1;
+  color:#000;
+}
+.auth-btn {
+  font-size:13px;
+  font-weight:600;
+  border-radius:var(--radius-pill);
+  border:1px solid #fff;
+  background-color:transparent;
+  color:#fff;
+  padding:10px 16px;
+  line-height:1.2;
+  text-decoration:none;
+  box-shadow:0 10px 24px rgba(0,0,0,0.4);
+  transition:all var(--transition-fast);
+}
+.auth-btn:hover {
+  background-color:#fff;
+  color:#000;
+  border-color:#fff;
+}
+
+/* HERO TOP BLOCK (عنوان الصفحة) */
+.about-hero {
+  background-color:#fff;
+  border-bottom:1px solid var(--border-light);
+  padding:32px 16px;
+  text-align:center;
+}
+.about-hero-inner {
+  max-width:1100px;
+  margin:0 auto;
+}
+.page-title {
+  font-size:20px;
+  font-weight:700;
+  color:var(--text-main);
+  line-height:1.3;
+  margin:0 0 8px;
+}
+.page-desc {
+  font-size:13px;
+  color:var(--text-muted);
+  line-height:1.5;
+  max-width:520px;
+  margin:0 auto;
+}
+
+/* CONTENT SECTIONS */
+.about-section-wrapper {
+  background-color:#fff;
+  border-bottom:1px solid var(--border-light);
+  padding:32px 16px 48px;
+}
+.about-inner {
+  max-width:900px;
+  margin:0 auto;
+  display:grid;
+  row-gap:32px;
+}
+
+/* كل بلوك */
+.about-block {
+  background-color:#fff;
+  border:1px solid var(--border-light);
+  border-radius:var(--radius-xl);
+  box-shadow:var(--shadow-soft);
+  padding:24px 20px 20px;
+  transition:box-shadow var(--transition-mid),border-color var(--transition-mid);
+}
+.about-block:hover {
+  border-color:var(--border-light-strong);
+  box-shadow:var(--shadow-card);
+}
+
+.about-heading {
+  font-size:16px;
+  font-weight:700;
+  color:var(--text-main);
+  line-height:1.4;
+  margin:0 0 12px;
+}
+
+.about-text {
+  font-size:14px;
+  line-height:1.7;
+  color:var(--text-main);
+  margin:0;
+}
+
+.about-separator {
+  border-top:1px solid var(--border-light);
+  margin:24px 0 16px;
+}
+
+.about-list {
+  font-size:14px;
+  line-height:1.7;
+  color:var(--text-main);
+  margin:0;
+  padding-right:1.2em;
+}
+.about-list li {
+  margin-bottom:8px;
+}
+
+/* FOOTER (نفس الهوم) */
+.footer-section {
+  background-color:#f1f2f4;
+  border-top:1px solid var(--border-light);
+  padding:40px 16px;
+  color:var(--text-main);
+  font-size:13px;
+  line-height:1.5;
+}
+.footer-grid {
+  max-width:1100px;
+  margin:0 auto;
+  display:grid;
+  gap:24px;
+}
+@media(min-width:768px){
+  .footer-grid {
+    grid-template-columns:repeat(3,1fr);
+  }
+}
+.footer-block-title {
+  font-weight:700;
+  font-size:14px;
+  color:var(--text-main);
+  margin-bottom:8px;
+}
+.footer-desc {
+  font-size:12px;
+  color:var(--text-muted);
+  line-height:1.5;
+  margin-bottom:16px;
+  max-width:320px;
+}
+.footer-links {
+  display:grid;
+  gap:6px;
+}
+.footer-link {
+  font-size:12px;
+  color:var(--text-main);
+  text-decoration:none;
+  line-height:1.4;
+  transition:color var(--transition-fast);
+}
+.footer-link:hover {
+  color:#000;
+  text-decoration:underline;
+}
+.footer-info-line {
+  font-size:12px;
+  color:var(--text-muted);
+  line-height:1.5;
+  margin-bottom:4px;
+}
+.footer-info-line .label {
+  font-weight:600;
+  color:var(--text-main);
+}
+.footer-copy {
+  margin-top:24px;
+  font-size:12px;
+  color:var(--text-muted);
+  line-height:1.4;
+  text-align:center;
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav class="navbar">
+  <div class="nav-inner">
+
+    <a class="nav-left" href="index.html">
+      <img src="logo.png" alt="شعار تسهيل" class="brand-logo-img" />
+      <div class="brand-texts">
+        <div class="brand-name">تسهيل</div>
+        <div class="brand-tagline">حلقة الوصل في عالم البناء</div>
+      </div>
+    </a>
+
+    <div class="nav-middle">
+      <a href="index.html#services" class="nav-link">الخدمات</a>
+      <a href="index.html#partner" class="nav-link">الشركاء</a>
+      <a href="#top" class="nav-link">تعرّف علينا</a>
+      <a href="index.html#contact" class="nav-link">تواصل</a>
+    </div>
+
+    <div class="nav-right">
+      <a class="search-pill" href="#">
+        <span>بحث</span>
+        <span class="search-icon">🔍</span>
+      </a>
+      <a class="auth-btn" href="#">تسجيل الدخول / إنشاء حساب</a>
+    </div>
+
+  </div>
+</nav>
+
+<!-- HERO INTRO -->
+<section class="about-hero" id="top">
+  <div class="about-hero-inner">
+    <h1 class="page-title">تعرّف علينا</h1>
+    <p class="page-desc">
+      من نحن، أين نريد أن نصل، ولماذا اسمنا "تَسهِيل".
+    </p>
+  </div>
+</section>
+
+<!-- CONTENT -->
+<section class="about-section-wrapper">
+  <div class="about-inner">
+
+    <!-- من نحن -->
+    <div class="about-block">
+      <h2 class="about-heading">من نحن</h2>
+      <p class="about-text">
+        نحن "تَسهِيل" - منصة عُمانية تربط بين كل من يرغب في بناء أو تجديد منزله
+        بموفري الخدمات الموثوقين. وُلدت من رحم التحديات اليومية التي تواجه العامة.
+        انطلاقنا كان من قناعة راسخة بأن تجربة البناء يجب أن تكون مصدر فرح،
+        وليس مصدر تعب.
+      </p>
+    </div>
+
+    <!-- رؤيتنا -->
+    <div class="about-block">
+      <h2 class="about-heading">رؤيتنا</h2>
+      <p class="about-text">
+        أن نكون الجسر الرقمي الذي يوصلك بجميع احتياجاتك العقارية بسهولة وثقة.
+        نحن نطمح إلى تحويل سوق البناء والتشطيب في عُمان إلى فضاء رقمي متكامل،
+        يجمع بين أصحاب المشاريع وأفضل الموردين والمقاولين في مكان واحد.
+      </p>
+    </div>
+
+    <!-- تطلعاتنا -->
+    <div class="about-block">
+      <h2 class="about-heading">تطلعاتنا</h2>
+      <ul class="about-list">
+        <li>تمكين أصحاب المنازل من اتخاذ قرارات واعية من خلال الشفافية والمقارنة المباشرة</li>
+        <li>دعم الشركات المحلية ومنحها منصة للوصول إلى عملاء جدد وبيانات سوقية قيّمة</li>
+        <li>المساهمة في رقمنة الاقتصاد العُماني من خلال حلول تقنية مبتكرة تلبي احتياجات السوق</li>
+      </ul>
+    </div>
+
+    <!-- لماذا اخترنا اسم تسهيل -->
+    <div class="about-block">
+      <h2 class="about-heading">لماذا اخترنا اسم "تَسهِيل"؟</h2>
+      <p class="about-text">
+        اخترنا اسم "تَسهِيل" لأنه يعبّر بدقة عن جوهر ما نقدمه: التيسير والتسهيل.
+        كلمة "تَسهِيل" في اللغة العربية تعني:
+      </p>
+
+      <ul class="about-list">
+        <li>جعل الشيء سهلاً وميسراً</li>
+        <li>إزالة العقبات والعُقَد</li>
+        <li>تمهيد الطريق وتبسيط العمليات</li>
+      </ul>
+
+      <p class="about-text">
+        وهذا بالضبط ما نقوم به في منصتنا: نُسهّل ما هو معقّد، ونُيسّر ما هو صعب.
+        نحن نحوّل رحلة كانت مليئة بالمشقات إلى تجربة سلسة ومباشرة، لأننا نؤمن بأن
+        بناء بيت العمر يجب أن تكون أحلى تجربة في حياتك، وليس أصعبها.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer-section">
+  <div class="footer-grid">
+
+    <div>
+      <div class="footer-block-title">تسهيل</div>
+      <div class="footer-desc">
+        منصّة تربط الأفراد والشركات بموردي البناء، التنفيذ، التشطيب،
+        المواد، والأثاث الجاهز. نوثق الاتفاق ونحدد المدة المتوقعة
+        لتقليل التأخير والنزاعات.
+      </div>
+      <div class="footer-links">
+        <a href="about.html" class="footer-link">عن المنصّة</a>
+        <a href="index.html#contact" class="footer-link">كيف نعمل</a>
+        <a href="index.html#contact" class="footer-link">الأسئلة الشائعة</a>
+      </div>
+    </div>
+
+    <div>
+      <div class="footer-block-title">معلومات التواصل</div>
+      <div class="footer-info-line"><span class="label">الاسم التجاري:</span> تسهيل لخدمات البناء</div>
+      <div class="footer-info-line"><span class="label">هاتف:</span> +968 0000 0000</div>
+      <div class="footer-info-line"><span class="label">البريد:</span> info@tasheel.example</div>
+      <div class="footer-info-line"><span class="label">صندوق البريد:</span> 1234 مسقط</div>
+    </div>
+
+    <div>
+      <div class="footer-block-title">روابط سريعة</div>
+      <div class="footer-links">
+        <a href="request.html" class="footer-link">سجل كشريك</a>
+        <a href="#" class="footer-link">شروط الاستخدام</a>
+        <a href="#" class="footer-link">سياسة الخصوصية</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-copy">© 2025 تسهيل. جميع الحقوق محفوظة.</div>
+</footer>
+
+</body>
+</html>

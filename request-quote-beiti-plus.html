@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>بيتي بلس | طلب تسعيرة</title>
+
+<style>
+:root{
+  --bg-page:#f8f9fa;
+  --text-main:#1a1a1a;
+  --text-muted:#6c757d;
+  --border-light:rgba(0,0,0,0.1);
+  --border-strong:rgba(0,0,0,0.2);
+  --radius-xl:1.25rem;
+  --radius-lg:1rem;
+  --radius-md:0.75rem;
+  --radius-pill:999px;
+  --shadow-soft:0 12px 32px rgba(0,0,0,.06);
+  --shadow-card:0 24px 48px rgba(0,0,0,.12);
+  --accent:#d93025;
+  --ok:#0f9d58;
+  --warn:#f5b301;
+}
+
+*{box-sizing:border-box;-webkit-font-smoothing:antialiased}
+body{
+  margin:0;
+  background:var(--bg-page);
+  color:var(--text-main);
+  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif;
+  line-height:1.6;
+  font-size:20px; /* خط كبير للعرض */
+}
+
+/* HEADER */
+.header{
+  background:#fff;
+  border-bottom:1px solid var(--border-light);
+  box-shadow:0 16px 32px rgba(0,0,0,.05);
+  padding:20px 0;
+}
+.header-inner{
+  width:100%;
+  max-width:1200px;
+  margin:0 auto;
+  padding:0 16px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:16px;
+  align-items:center;
+  justify-content:space-between;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  text-decoration:none;
+  color:inherit;
+}
+.brand img{
+  width:70px;height:70px;object-fit:cover;
+  border-radius:16px;border:1px solid var(--border-light);
+  box-shadow:0 16px 32px rgba(0,0,0,.07);
+}
+.brand-title{
+  display:flex;flex-direction:column;
+}
+.brand-name{font-size:26px;font-weight:800;line-height:1.2}
+.brand-sub{font-size:18px;color:var(--text-muted)}
+.header-actions{
+  display:flex;gap:12px;flex-wrap:wrap
+}
+.link-btn, .cta-btn{
+  display:inline-block;text-decoration:none;font-weight:700;line-height:1.2;border-radius:var(--radius-pill);
+  padding:12px 18px;box-shadow:0 10px 24px rgba(0,0,0,.07);
+}
+.link-btn{border:1px solid #000;color:#000;background:#fff;font-size:18px}
+.link-btn:hover{background:#000;color:#fff}
+.cta-btn{border:0;background:var(--accent);color:#fff;font-size:18px}
+.cta-btn:hover{filter:brightness(1.07)}
+
+/* PAGE TITLE */
+.page-hero{background:#fff;border-bottom:1px solid var(--border-light);padding:28px 0}
+.page-hero .wrap{max-width:1200px;margin:0 auto;padding:0 16px}
+.h-title{font-size:30px;font-weight:800;margin:0 0 6px}
+.h-sub{font-size:18px;color:var(--text-muted);margin:0}
+
+/* LAYOUT */
+.page{
+  max-width:1200px;margin:24px auto;padding:0 16px;
+  display:grid;gap:24px;
+}
+@media(min-width:980px){
+  .page{grid-template-columns:2fr 1fr}
+}
+
+/* FORM CARD */
+.card{
+  background:#fff;border:1px solid var(--border-light);border-radius:var(--radius-xl);
+  box-shadow:var(--shadow-card);padding:22px;
+}
+.card-title{font-size:24px;font-weight:800;margin:0 0 12px}
+.card-sub{font-size:18px;color:var(--text-muted);margin:0 0 16px}
+
+.form-grid{
+  display:grid;gap:16px;
+}
+@media(min-width:720px){
+  .form-grid.two{grid-template-columns:1fr 1fr}
+  .form-grid.three{grid-template-columns:1fr 1fr 1fr}
+}
+.field{display:flex;flex-direction:column;gap:8px}
+.label{font-size:18px;font-weight:700}
+.help{font-size:16px;color:var(--text-muted)}
+.input, .select, .textarea, .file{
+  font-size:18px;padding:12px 14px;border-radius:14px;border:1px solid var(--border-strong);background:#fff;
+}
+.textarea{min-height:140px;resize:vertical;line-height:1.7}
+.file{padding:10px}
+.inline{
+  display:flex;flex-wrap:wrap;gap:10px;align-items:center
+}
+.badge{
+  background:#f8f9fa;border:1px solid var(--border-light);padding:6px 12px;border-radius:var(--radius-pill);font-size:16px
+}
+
+.divider{height:1px;background:var(--border-light);margin:10px 0 4px}
+
+.hint{
+  display:flex;gap:10px;align-items:flex-start;background:#f8f9fa;border:1px dashed var(--border-strong);
+  border-radius:14px;padding:12px 14px;font-size:16px;color:#333
+}
+
+/* CONDITIONAL SECTIONS */
+.hidden{display:none}
+
+/* ACTIONS */
+.actions{
+  display:flex;flex-wrap:wrap;gap:12px;margin-top:8px
+}
+.submit-btn{
+  background:#000;color:#fff;border:1px solid #000;border-radius:14px;
+  padding:14px 18px;font-size:18px;font-weight:800;cursor:pointer;
+  box-shadow:0 20px 40px rgba(0,0,0,.12);
+}
+.submit-btn:hover{background:#111}
+.secondary-btn{
+  background:#fff;color:#000;border:1px solid #000;border-radius:14px;
+  padding:14px 18px;font-size:18px;font-weight:800;cursor:pointer
+}
+
+/* PREVIEW CARD */
+.preview .pair{display:flex;justify-content:space-between;gap:12px;border-bottom:1px dashed var(--border-light);padding:8px 0}
+.preview .k{color:var(--text-muted);font-size:18px}
+.preview .v{font-weight:700}
+.preview .ok{color:var(--ok);font-weight:800}
+.preview .warn{color:var(--warn);font-weight:800}
+
+/* SUCCESS MODAL */
+.modal{
+  position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:center;justify-content:center;padding:16px;z-index:9999;
+}
+.modal .box{
+  background:#fff;border-radius:20px;border:1px solid var(--border-light);box-shadow:var(--shadow-card);
+  max-width:560px;width:100%;padding:22px
+}
+.modal .box h3{margin:0 0 10px;font-size:26px}
+.modal .box p{margin:6px 0 0;font-size:18px;color:#333}
+.modal .box .id{font-weight:800}
+.modal .row{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.modal .close{padding:12px 16px;border-radius:12px;border:1px solid #000;background:#fff;font-weight:800;cursor:pointer}
+.modal .copy{padding:12px 16px;border-radius:12px;border:0;background:var(--accent);color:#fff;font-weight:800;cursor:pointer}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-inner">
+    <a href="category-smart-energy.html" class="brand" title="رجوع للقسم">
+      <img src="sm.png" alt="بيتي بلس">
+      <div class="brand-title">
+        <div class="brand-name">بيتي بلس</div>
+        <div class="brand-sub">طلب تسعيرة رسمية عبر المنصّة</div>
+      </div>
+    </a>
+    <div class="header-actions">
+      <a class="link-btn" href="category-smart-energy.html">رجوع للقائمة</a>
+      <a class="cta-btn" href="#form">ابدأ الطلب الآن</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="wrap">
+    <h1 class="h-title">طلب تسعيرة من شركة بيتي بلس</h1>
+    <p class="h-sub">عبّئ البيانات التالية بدقة. ستتواصل معك الشركة بتقدير مبدئي وزيارة إن لزم.</p>
+  </div>
+</section>
+
+<main class="page" id="form">
+
+  <!-- FORM -->
+  <section class="card">
+    <h2 class="card-title">بيانات الطلب</h2>
+    <p class="card-sub">اختر نوع الخدمة وأدخل تفاصيل العقار والتواصل. الحقول الموسومة بـ (مطلوب) ضرورية.</p>
+
+    <!-- نوع الخدمة -->
+    <div class="form-grid">
+      <div class="field">
+        <label class="label" for="serviceType">نوع الخدمة (مطلوب)</label>
+        <select id="serviceType" class="select" required>
+          <option value="smart">منزل ذكي</option>
+          <option value="solar">ألواح شمسية</option>
+        </select>
+        <div class="hint">سنعرض لك أسئلة خاصة بكل خدمة بعد اختيارك.</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- بيانات عامة -->
+    <h3 class="card-title" style="font-size:22px">البيانات العامة</h3>
+    <div class="form-grid two">
+      <div class="field">
+        <label class="label" for="fullName">الاسم الكامل (مطلوب)</label>
+        <input id="fullName" class="input" type="text" placeholder="اكتب اسمك الثلاثي" required>
+      </div>
+      <div class="field">
+        <label class="label" for="phone">رقم الهاتف (مطلوب)</label>
+        <input id="phone" class="input" type="tel" placeholder="+968 9xxxxxxx" required>
+      </div>
+      <div class="field">
+        <label class="label" for="email">البريد الإلكتروني</label>
+        <input id="email" class="input" type="email" placeholder="name@example.com">
+      </div>
+      <div class="field">
+        <label class="label" for="city">الولاية / المدينة</label>
+        <input id="city" class="input" type="text" placeholder="مسقط / السيب / صلالة ...">
+      </div>
+      <div class="field">
+        <label class="label" for="budget">الميزانية التقديرية</label>
+        <select id="budget" class="select">
+          <option value="">غير محددة</option>
+          <option value="low">حتى 500 ر.ع</option>
+          <option value="mid">500 – 2,000 ر.ع</option>
+          <option value="high">أكثر من 2,000 ر.ع</option>
+        </select>
+      </div>
+      <div class="field">
+        <label class="label" for="targetDate">الموعد المستهدف للتنفيذ</label>
+        <input id="targetDate" class="input" type="month">
+      </div>
+    </div>
+
+    <!-- منزل ذكي -->
+    <div id="smartFields">
+      <div class="divider"></div>
+      <h3 class="card-title" style="font-size:22px">تفاصيل المنزل الذكي</h3>
+      <div class="form-grid two">
+        <div class="field">
+          <label class="label" for="rooms">عدد الغرف</label>
+          <input id="rooms" class="input" type="number" min="0" placeholder="مثال: 5">
+        </div>
+        <div class="field">
+          <label class="label" for="floors">عدد الأدوار</label>
+          <select id="floors" class="select">
+            <option value="">اختيار</option>
+            <option value="1">دور واحد</option>
+            <option value="2">دوران</option>
+            <option value="3">ثلاثة أدوار</option>
+          </select>
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">أنظمة مطلوبة</label>
+        <div class="inline">
+          <label class="badge"><input type="checkbox" value="إضاءة"> إضاءة</label>
+          <label class="badge"><input type="checkbox" value="تكييف"> تكييف</label>
+          <label class="badge"><input type="checkbox" value="كاميرات"> كاميرات</label>
+          <label class="badge"><input type="checkbox" value="أقفال ذكية"> أقفال ذكية</label>
+          <label class="badge"><input type="checkbox" value="ستائر"> ستائر</label>
+          <label class="badge"><input type="checkbox" value="لوحة تحكم موحدة"> لوحة تحكم موحدة</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- ألواح شمسية -->
+    <div id="solarFields" class="hidden">
+      <div class="divider"></div>
+      <h3 class="card-title" style="font-size:22px">تفاصيل الألواح الشمسية</h3>
+      <div class="form-grid two">
+        <div class="field">
+          <label class="label" for="bill">متوسط فاتورة الكهرباء (ر.ع)</label>
+          <input id="bill" class="input" type="number" min="0" step="0.1" placeholder="مثال: 45">
+        </div>
+        <div class="field">
+          <label class="label" for="roofArea">مساحة السطح المتاحة (م²)</label>
+          <input id="roofArea" class="input" type="number" min="0" step="1" placeholder="مثال: 120">
+        </div>
+        <div class="field">
+          <label class="label" for="roofType">نوع السقف</label>
+          <select id="roofType" class="select">
+            <option value="">اختيار</option>
+            <option>خرسانة</option>
+            <option>صاج / معدني</option>
+            <option>أخرى</option>
+          </select>
+        </div>
+        <div class="field">
+          <label class="label" for="phase">طور الكهرباء</label>
+          <select id="phase" class="select">
+            <option value="">اختيار</option>
+            <option>أحادي الطور</option>
+            <option>ثلاثي الطور</option>
+          </select>
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">خيارات إضافية</label>
+        <div class="inline">
+          <label class="badge"><input type="checkbox" value="بطاريات تخزين"> بطاريات تخزين</label>
+          <label class="badge"><input type="checkbox" value="ربط مع الشبكة"> ربط مع الشبكة</label>
+          <label class="badge"><input type="checkbox" value="مراقبة عبر التطبيق"> مراقبة عبر التطبيق</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- ملفات وملاحظات -->
+    <div class="divider"></div>
+    <div class="form-grid">
+      <div class="field">
+        <label class="label" for="files">مرفقات (مخطط / صور العقار)</label>
+        <input id="files" class="file" type="file" multiple accept=".jpg,.jpeg,.png,.pdf,.webp"/>
+        <div class="help">اختياري — يوضح الصورة للشركة.</div>
+      </div>
+      <div class="field">
+        <label class="label" for="notes">ملاحظات إضافية</label>
+        <textarea id="notes" class="textarea" placeholder="اكتب أي تفاصيل تهمك (مثلاً: غرف معينة، اتجاه الشمس، الحد الأقصى للميزانية)..."></textarea>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button id="submitBtn" class="submit-btn">إرسال طلب التسعيرة إلى بيتي بلس</button>
+      <button id="printBtn" class="secondary-btn" type="button">طباعة / حفظ PDF</button>
+    </div>
+  </section>
+
+  <!-- PREVIEW -->
+  <aside class="card preview">
+    <h3 class="card-title">معاينة سريعة</h3>
+    <p class="card-sub">تتحدث تلقائياً حسب إدخالك.</p>
+
+    <div id="previewList">
+      <div class="pair"><div class="k">نوع الخدمة</div><div class="v">منزل ذكي</div></div>
+      <div class="pair"><div class="k">الاسم</div><div class="v">—</div></div>
+      <div class="pair"><div class="k">الهاتف</div><div class="v">—</div></div>
+      <div class="pair"><div class="k">البريد</div><div class="v">—</div></div>
+      <div class="pair"><div class="k">المدينة</div><div class="v">—</div></div>
+      <div class="pair"><div class="k">الميزانية</div><div class="v">غير محددة</div></div>
+      <div class="pair"><div class="k">الموعد المستهدف</div><div class="v">—</div></div>
+
+      <!-- Smart preview -->
+      <div class="pair smart"><div class="k">الغرف</div><div class="v">—</div></div>
+      <div class="pair smart"><div class="k">الأدوار</div><div class="v">—</div></div>
+      <div class="pair smart"><div class="k">أنظمة مطلوبة</div><div class="v">—</div></div>
+
+      <!-- Solar preview -->
+      <div class="pair solar hidden"><div class="k">متوسط الفاتورة</div><div class="v">—</div></div>
+      <div class="pair solar hidden"><div class="k">مساحة السطح</div><div class="v">—</div></div>
+      <div class="pair solar hidden"><div class="k">نوع السقف</div><div class="v">—</div></div>
+      <div class="pair solar hidden"><div class="k">طور الكهرباء</div><div class="v">—</div></div>
+
+      <div class="pair"><div class="k">ملاحظات</div><div class="v">—</div></div>
+      <div class="pair"><div class="k">الجاهزية</div><div class="v ok">جاهز للإرسال ✔</div></div>
+    </div>
+  </aside>
+</main>
+
+<!-- SUCCESS MODAL -->
+<div class="modal" id="successModal" role="dialog" aria-modal="true" aria-labelledby="successTitle">
+  <div class="box">
+    <h3 id="successTitle">تم إرسال الطلب بنجاح ✅</h3>
+    <p>رقم الطلب: <span class="id" id="reqId"></span></p>
+    <p style="margin-top:10px">تم حفظ نسخة محلية لمعاودة المراجعة.</p>
+    <div class="row">
+      <button class="copy" id="copyBtn" type="button">نسخ بيانات الطلب</button>
+      <button class="close" id="closeModal" type="button">إغلاق</button>
+    </div>
+  </div>
+</div>
+
+<footer class="header" style="margin-top:24px">
+  <div class="header-inner" style="justify-content:center">
+    <div class="brand-title" style="align-items:center">
+      <div class="brand-name">تسهيل</div>
+      <div class="brand-sub">بياناتك تُرسل إلى شركة بيتي بلس عبر المنصّة</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* عناصر */
+const serviceType = document.getElementById('serviceType');
+const smartFields  = document.getElementById('smartFields');
+const solarFields  = document.getElementById('solarFields');
+
+const preview = {
+  list: document.getElementById('previewList'),
+  pairs: () => document.querySelectorAll('#previewList .pair'),
+  set: (label, value) => {
+    const rows = Array.from(document.querySelectorAll('#previewList .pair'));
+    const row = rows.find(r => r.querySelector('.k').textContent.trim() === label);
+    if(row){ row.querySelector('.v').textContent = value || '—'; }
+  },
+  showClass: (cls, vis) => {
+    document.querySelectorAll('.' + cls).forEach(el => {
+      if(vis){ el.classList.remove('hidden'); } else { el.classList.add('hidden'); }
+    })
+  }
+};
+
+/* الحقول العامة */
+const fullName = document.getElementById('fullName');
+const phone    = document.getElementById('phone');
+const email    = document.getElementById('email');
+const city     = document.getElementById('city');
+const budget   = document.getElementById('budget');
+const target   = document.getElementById('targetDate');
+const notes    = document.getElementById('notes');
+
+/* الحقول الذكية */
+const rooms    = document.getElementById('rooms');
+const floors   = document.getElementById('floors');
+
+/* تحديث المعاينة العامة */
+function updateGeneralPreview(){
+  preview.set('نوع الخدمة', serviceType.value === 'smart' ? 'منزل ذكي' : 'ألواح شمسية');
+  preview.set('الاسم', fullName.value);
+  preview.set('الهاتف', phone.value);
+  preview.set('البريد', email.value);
+  preview.set('المدينة', city.value);
+  preview.set('الميزانية', budget.options[budget.selectedIndex]?.text || 'غير محددة');
+  preview.set('الموعد المستهدف', target.value || '—');
+  preview.set('ملاحظات', notes.value || '—');
+}
+
+/* إظهار/إخفاء الحقول حسب نوع الخدمة */
+function toggleService(){
+  const isSmart = serviceType.value === 'smart';
+  smartFields.classList.toggle('hidden', !isSmart);
+  solarFields.classList.toggle('hidden', isSmart);
+
+  preview.showClass('smart', isSmart);
+  preview.showClass('solar', !isSmart);
+
+  updateGeneralPreview();
+}
+serviceType.addEventListener('change', toggleService);
+
+/* أنظمة مطلوبة (منزل ذكي) */
+function getCheckedSystems(){
+  const boxes = smartFields.querySelectorAll('input[type="checkbox"]');
+  const list = [...boxes].filter(b=>b.checked).map(b=>b.value);
+  return list.join('، ') || '—';
+}
+
+/* خيارات إضافية (ألواح شمسية) */
+function getSolarExtras(){
+  const boxes = solarFields.querySelectorAll('input[type="checkbox"]');
+  const list = [...boxes].filter(b=>b.checked).map(b=>b.value);
+  return list.join('، ') || '—';
+}
+
+/* تحديث معاينة حسب الحقل */
+[fullName, phone, email, city, budget, target, notes,
+ rooms, floors,
+ document.getElementById('bill'),
+ document.getElementById('roofArea'),
+ document.getElementById('roofType'),
+ document.getElementById('phase')
+].forEach(el=>{
+  if(!el) return;
+  el.addEventListener('input', ()=>{
+    updateGeneralPreview();
+
+    // منزل ذكي
+    preview.set('الغرف', rooms.value || '—');
+    preview.set('الأدوار', floors.options[floors.selectedIndex]?.text || '—');
+    preview.set('أنظمة مطلوبة', getCheckedSystems());
+
+    // شمسية
+    const bill = document.getElementById('bill').value;
+    const roofArea = document.getElementById('roofArea').value;
+    const roofType = document.getElementById('roofType').options[document.getElementById('roofType').selectedIndex]?.text || '—';
+    const phase = document.getElementById('phase').options[document.getElementById('phase').selectedIndex]?.text || '—';
+
+    preview.set('متوسط الفاتورة', bill ? bill + ' ر.ع' : '—');
+    preview.set('مساحة السطح', roofArea ? roofArea + ' م²' : '—');
+    preview.set('نوع السقف', roofType);
+    preview.set('طور الكهرباء', phase);
+  });
+});
+
+/* checkboxes listeners */
+smartFields.querySelectorAll('input[type="checkbox"]').forEach(cb=>{
+  cb.addEventListener('change', ()=>{
+    preview.set('أنظمة مطلوبة', getCheckedSystems());
+  });
+});
+solarFields.querySelectorAll('input[type="checkbox"]').forEach(cb=>{
+  cb.addEventListener('change', ()=>{
+    const extras = getSolarExtras();
+    // أضفه للملاحظات كمرجع سريع في المعاينة
+    const base = notes.value.trim();
+    const tag = extras ? `خيارات: ${extras}` : '';
+    preview.set('ملاحظات', base ? (base + (extras ? ' | ' + tag : '')) : (tag || '—'));
+  });
+});
+
+/* طباعة */
+document.getElementById('printBtn').addEventListener('click', ()=> window.print());
+
+/* إرسال */
+const modal = document.getElementById('successModal');
+const reqIdEl= document.getElementById('reqId');
+function makeId(){
+  const t = new Date();
+  return 'BP-' + t.getFullYear().toString().slice(2) + (t.getMonth()+1).toString().padStart(2,'0')
+         + t.getDate().toString().padStart(2,'0') + '-'
+         + Math.random().toString(36).slice(2,7).toUpperCase();
+}
+
+document.getElementById('submitBtn').addEventListener('click', (e)=>{
+  e.preventDefault();
+
+  // تحقق بسيط
+  if(!fullName.value.trim()){ alert('الاسم مطلوب'); fullName.focus(); return; }
+  if(!phone.value.trim()){ alert('رقم الهاتف مطلوب'); phone.focus(); return; }
+
+  // جمع البيانات
+  const payload = {
+    company: 'بيتي بلس',
+    service: serviceType.value === 'smart' ? 'منزل ذكي' : 'ألواح شمسية',
+    fullName: fullName.value.trim(),
+    phone: phone.value.trim(),
+    email: email.value.trim(),
+    city: city.value.trim(),
+    budget: budget.options[budget.selectedIndex]?.text || 'غير محددة',
+    target: target.value || '',
+    smart: {
+      rooms: rooms.value || '',
+      floors: floors.options[floors.selectedIndex]?.text || '',
+      systems: getCheckedSystems()
+    },
+    solar: {
+      bill: document.getElementById('bill').value || '',
+      roofArea: document.getElementById('roofArea').value || '',
+      roofType: document.getElementById('roofType').options[document.getElementById('roofType').selectedIndex]?.text || '',
+      phase: document.getElementById('phase').options[document.getElementById('phase').selectedIndex]?.text || '',
+      extras: getSolarExtras()
+    },
+    notes: notes.value.trim()
+  };
+
+  // خزن محلي وعرض نجاح
+  const id = makeId();
+  localStorage.setItem(id, JSON.stringify(payload));
+  reqIdEl.textContent = id;
+  modal.style.display = 'flex';
+});
+
+/* نسخ الطلب */
+document.getElementById('copyBtn').addEventListener('click', async ()=>{
+  const id = reqIdEl.textContent;
+  const data = localStorage.getItem(id);
+  try{
+    await navigator.clipboard.writeText(`رقم الطلب: ${id}\n${data}`);
+    alert('تم نسخ الطلب إلى الحافظة ✅');
+  }catch(e){
+    alert('تعذّر النسخ تلقائياً — انسخ يدوياً من الشاشة.');
+  }
+});
+
+/* إغلاق مودال */
+document.getElementById('closeModal').addEventListener('click', ()=> modal.style.display='none');
+modal.addEventListener('click', (e)=>{ if(e.target === modal){ modal.style.display='none'; }});
+
+/* تهيئة أولية */
+toggleService();
+updateGeneralPreview();
+</script>
+
+</body>
+</html>
