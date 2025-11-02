@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تسهيل | الأنظمة الذكية والطاقة</title>
+
+<style>
+:root {
+  --bg-page:#f8f9fa;
+  --text-main:#1a1a1a;
+  --text-muted:#6c757d;
+  --border-light:rgba(0,0,0,0.08);
+  --border-light-strong:rgba(0,0,0,0.12);
+  --radius-xl:1.25rem;
+  --radius-lg:1rem;
+  --radius-md:0.75rem;
+  --radius-pill:999px;
+  --shadow-soft:0 12px 32px rgba(0,0,0,0.06);
+  --shadow-hover:0 24px 48px rgba(0,0,0,0.08);
+  --transition-mid:.25s ease;
+  --accent-btn:#d93025;
+}
+
+*{
+  box-sizing:border-box;
+  -webkit-font-smoothing:antialiased;
+}
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif;
+  background-color:var(--bg-page);
+  color:var(--text-main);
+  line-height:1.5;
+  text-rendering:optimizeLegibility;
+  font-size:18px; /* تكبير النص الأساسي للعرض */
+}
+img{
+  display:block;
+  max-width:100%;
+}
+
+.container{
+  width:100%;
+  max-width:1100px;
+  padding:0 16px;
+  margin:0 auto;
+}
+
+/* HEADER */
+.site-header{
+  background-color:#fff;
+  border-bottom:1px solid var(--border-light);
+  padding:16px 0;
+}
+.header-row{
+  display:flex;
+  flex-wrap:wrap;
+  row-gap:16px;
+  align-items:center;
+  justify-content:space-between;
+}
+.header-left{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  text-decoration:none;
+  color:inherit;
+}
+.brand-logo-lg{
+  width:60px;
+  height:60px;
+  object-fit:contain;
+  border-radius:var(--radius-md);
+  background-color:#fff;
+  border:1px solid var(--border-light);
+  box-shadow:0 16px 32px rgba(0,0,0,0.07);
+}
+.brand-text-wrap{
+  display:flex;
+  flex-direction:column;
+}
+.brand-name{
+  font-size:20px;
+  font-weight:700;
+  color:var(--text-main);
+  line-height:1.2;
+}
+.brand-tagline{
+  font-size:14px;
+  color:var(--text-muted);
+  line-height:1.4;
+}
+.header-right{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.search-icon-btn{
+  background-color:#fff;
+  border:1px solid var(--border-light);
+  border-radius:50%;
+  width:48px;
+  height:48px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 8px 20px rgba(0,0,0,0.06);
+  cursor:pointer;
+  transition:all .18s ease;
+  font-size:20px;
+}
+.search-icon-btn:hover{
+  background-color:#000;
+  border-color:#000;
+}
+.search-icon-btn:hover .search-icon-symbol{
+  color:#fff;
+}
+.search-icon-symbol{
+  font-size:1.3rem;
+  color:#000;
+  line-height:1;
+}
+.auth-btn{
+  font-size:16px;
+  font-weight:600;
+  border-radius:var(--radius-pill);
+  border:1px solid #000;
+  background-color:#fff;
+  color:#000;
+  padding:12px 20px;
+  line-height:1.2;
+  box-shadow:0 10px 24px rgba(0,0,0,0.07);
+  text-decoration:none;
+  transition:all .18s ease;
+  display:inline-block;
+}
+.auth-btn:hover{
+  background-color:#000;
+  color:#fff;
+}
+
+/* HERO */
+.page-hero{
+  background-color:#fff;
+  border-bottom:1px solid var(--border-light);
+  padding:40px 0;
+  text-align:center;
+}
+.page-title{
+  font-size:28px;
+  font-weight:700;
+  color:var(--text-main);
+  line-height:1.3;
+  margin:0 0 12px;
+}
+.page-desc{
+  font-size:18px;
+  color:var(--text-muted);
+  line-height:1.6;
+  max-width:680px;
+  margin:0 auto;
+  font-weight:400;
+}
+
+/* GRID OF SHOPS */
+.vendor-section{
+  background-color:#fff;
+  border-bottom:1px solid var(--border-light);
+  padding:40px 0 56px;
+}
+
+.vendor-grid{
+  display:grid;
+  gap:28px;
+  max-width:1000px;
+  margin:0 auto;
+}
+@media(min-width:768px){
+  .vendor-grid{
+    grid-template-columns:1fr 1fr;
+  }
+}
+
+.vendor-card{
+  background-color:#fff;
+  border:1px solid var(--border-light);
+  border-radius:var(--radius-xl);
+  box-shadow:var(--shadow-soft);
+  padding:24px 24px 20px;
+  display:flex;
+  flex-direction:column;
+  min-height:240px;
+  transition:all var(--transition-mid);
+}
+.vendor-card:hover{
+  box-shadow:var(--shadow-hover);
+  border-color:var(--border-light-strong);
+  transform:translateY(-2px);
+}
+
+.vendor-top{
+  display:flex;
+  align-items:flex-start;
+  gap:20px;
+}
+
+.vendor-logo{
+  width:76px;
+  height:76px;
+  border-radius:var(--radius-lg);
+  background-color:#f8f9fa;
+  border:1px solid var(--border-light);
+  box-shadow:0 8px 20px rgba(0,0,0,0.06);
+  overflow:hidden;
+  flex-shrink:0;
+}
+.vendor-logo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.vendor-main-info{
+  flex:1;
+  min-width:0;
+}
+
+.vendor-name{
+  font-size:20px;
+  font-weight:600;
+  color:var(--text-main);
+  line-height:1.4;
+  margin:0 0 8px;
+}
+
+.vendor-services{
+  font-size:16px;
+  line-height:1.5;
+  color:var(--text-main);
+  margin:0 0 12px;
+  font-weight:400;
+}
+
+.vendor-tags-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-bottom:16px;
+}
+
+.vendor-tag{
+  background-color:#f8f9fa;
+  border:1px solid var(--border-light);
+  color:var(--text-main);
+  font-size:14px;
+  line-height:1.2;
+  font-weight:500;
+  padding:8px 10px;
+  border-radius:var(--radius-pill);
+  box-shadow:0 8px 20px rgba(0,0,0,0.03);
+  white-space:nowrap;
+}
+
+.vendor-bottom{
+  margin-top:auto;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:space-between;
+  row-gap:16px;
+  column-gap:16px;
+  align-items:flex-end;
+  border-top:1px solid var(--border-light);
+  padding-top:20px;
+}
+
+.vendor-meta{
+  font-size:15px;
+  line-height:1.5;
+  color:var(--text-muted);
+}
+.vendor-meta-line{
+  margin-bottom:6px;
+}
+.vendor-meta-label{
+  color:var(--text-main);
+  font-weight:600;
+  font-size:15px;
+  margin-left:6px;
+}
+
+.vendor-action{
+  flex-shrink:0;
+}
+.quote-btn{
+  display:inline-block;
+  background-color:var(--accent-btn);
+  color:#fff;
+  border-radius:var(--radius-md);
+  font-size:16px;
+  font-weight:600;
+  line-height:1.2;
+  text-decoration:none;
+  padding:12px 16px;
+  border:0;
+  box-shadow:0 18px 36px rgba(217,48,37,0.4);
+  transition:all .18s ease;
+}
+.quote-btn:hover{
+  filter:brightness(1.08);
+}
+
+/* FOOTER */
+.footer-section{
+  background-color:#f1f2f4;
+  border-top:1px solid var(--border-light);
+  padding:48px 0;
+  color:var(--text-main);
+  font-size:16px;
+  line-height:1.5;
+}
+.footer-grid{
+  max-width:1100px;
+  margin:0 auto;
+  display:grid;
+  gap:28px;
+}
+@media(min-width:768px){
+  .footer-grid{
+    grid-template-columns:repeat(3,1fr);
+  }
+}
+.footer-block-title{
+  font-weight:700;
+  font-size:18px;
+  color:var(--text-main);
+  margin-bottom:12px;
+}
+.footer-desc{
+  font-size:16px;
+  color:var(--text-muted);
+  line-height:1.6;
+  margin-bottom:20px;
+  max-width:360px;
+  font-weight:400;
+}
+.footer-links{
+  display:grid;
+  gap:8px;
+}
+.footer-link{
+  font-size:15px;
+  color:var(--text-main);
+  text-decoration:none;
+  line-height:1.4;
+}
+.footer-link:hover{
+  text-decoration:underline;
+  color:#000;
+}
+.footer-info-line{
+  font-size:15px;
+  color:var(--text-muted);
+  line-height:1.5;
+  margin-bottom:6px;
+}
+.footer-info-line .label{
+  font-weight:600;
+  color:var(--text-main);
+}
+.footer-copy{
+  margin-top:28px;
+  font-size:14px;
+  color:var(--text-muted);
+  line-height:1.4;
+  text-align:center;
+}
+.vendor-card-link {
+        text-decoration: none;
+        color: inherit;
+        display: block;
+      }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <div class="header-row">
+
+      <!-- الشعار يرجع للصفحة الرئيسية -->
+      <a class="header-left" href="index.html">
+        <img src="logo.png" class="brand-logo-lg" alt="تسهيل">
+        <div class="brand-text-wrap">
+          <div class="brand-name">تسهيل</div>
+          <div class="brand-tagline">الأنظمة الذكية والطاقة</div>
+        </div>
+      </a>
+
+      <div class="header-right">
+        <button class="search-icon-btn">
+          <span class="search-icon-symbol">🔍</span>
+        </button>
+        <a href="#" class="auth-btn">تسجيل الدخول / إنشاء حساب</a>
+      </div>
+
+    </div>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="container">
+    <h1 class="page-title">الأنظمة الذكية والطاقة</h1>
+    <p class="page-desc">
+      هذا القسم يركز على الموردين المتخصصين في (١) المنازل الذكية والتحكم
+      الذكي في المبنى، و(٢) الطاقة المتجددة وتركيب الألواح الشمسية. الهدف هو
+      مساعدة صاحب المنزل أو المشروع يوصل لمورد واضح بدون يضيع وقته بين
+      الفنيين والوعود. كل جهة هنا تعرض حل نهائي جاهز للتنفيذ.
+    </p>
+  </div>
+</section>
+
+<section class="vendor-section">
+  <div class="container">
+
+    <div class="vendor-grid">
+
+      <!-- الشركة الأولى: البيت الذكي -->
+    <a class="vendor-card-link" href="vendor-smart-home.html">
+      <div class="vendor-card">
+        <div class="vendor-top">
+          <div class="vendor-logo">
+            <img src="sm.png" alt="بيت ذكي بلس">
+          </div>
+          <div class="vendor-main-info">
+            <div class="vendor-name">بيت ذكي بلس</div>
+            <div class="vendor-services">
+              نظام تحكم متكامل للمنزل (إضاءة، تكييف، ستائر، أقفال باب، حساسات
+              أمان) من تطبيق واحد. الشركة تقدم باقات جاهزة للفلل والشقق بدون ما
+              تحتاج تعيد تمديدات الكهرباء من جديد.
+            </div>
+            <div class="vendor-tags-row">
+              <div class="vendor-tag">تحكم في الإضاءة</div>
+              <div class="vendor-tag">تحكم بالتكييف</div>
+              <div class="vendor-tag">أقفال ذكية</div>
+              <div class="vendor-tag">حساسات أمان</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="vendor-bottom">
+          <div class="vendor-meta">
+            <div class="vendor-meta-line">
+              <span class="vendor-meta-label">الموقع:</span>
+              مسقط
+            </div>
+            <div class="vendor-meta-line">
+              <span class="vendor-meta-label">نوع الخدمة:</span>
+              باقات منزل ذكي جاهزة للتركيب
+            </div>
+          </div>
+
+          <div class="vendor-action">
+            <a class="quote-btn" href="#">استفسار عن الباقة</a>
+          </div>
+        </div>
+      </div>
+        
+      <!-- الشركة الثانية: الطاقة الشمسية -->
+      <div class="vendor-card">
+        <div class="vendor-top">
+          <div class="vendor-logo">
+            <img src="ss.jpg" alt="الطاقة الشمسية المتقدمة">
+          </div>
+          <div class="vendor-main-info">
+            <div class="vendor-name">الطاقة الشمسية المتقدمة</div>
+            <div class="vendor-services">
+              تركيب أنظمة ألواح شمسية مع بطاريات تخزين للطاقة للمنازل
+              والمشاريع التجارية الصغيرة. الشركة تقدم دراسة استهلاك الكهرباء،
+              مقترح نظام، وتركيب كامل مع متابعة الأداء.
+            </div>
+            <div class="vendor-tags-row">
+              <div class="vendor-tag">ألواح شمسية</div>
+              <div class="vendor-tag">تخزين بطاريات</div>
+              <div class="vendor-tag">خفض فاتورة الكهرباء</div>
+              <div class="vendor-tag">حلول مستمرة 24/7</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="vendor-bottom">
+          <div class="vendor-meta">
+            <div class="vendor-meta-line">
+              <span class="vendor-meta-label">الموقع:</span>
+              بركاء
+            </div>
+            <div class="vendor-meta-line">
+              <span class="vendor-meta-label">الفئة المستهدفة:</span>
+              منازل سكنية، مزارع، محلات صغيرة
+            </div>
+          </div>
+
+          <div class="vendor-action">
+            <a class="quote-btn" href="#">طلب تسعيرة مبدئية</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<footer class="footer-section">
+  <div class="container">
+    <div class="footer-grid">
+
+      <div>
+        <div class="footer-block-title">تسهيل</div>
+        <div class="footer-desc">
+          "تسهيل" تربطك مباشرة مع مزوّدي الأنظمة الذكية والطاقة المتجددة، بدل ما
+          تدور كل مرة على فني مختلف. نحن نعرض أسماء الشركات بشكل واضح حتى
+          التواصل يكون مباشر بينهم وبين المالك.
+        </div>
+        <div class="footer-links">
+          <a href="#" class="footer-link">عن المنصّة</a>
+          <a href="#" class="footer-link">كيف نعمل</a>
+          <a href="#" class="footer-link">الأسئلة الشائعة</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="footer-block-title">معلومات التواصل</div>
+        <div class="footer-info-line">
+          <span class="label">الاسم التجاري:</span>
+          تسهيل لخدمات البناء
+        </div>
+        <div class="footer-info-line">
+          <span class="label">رقم الهاتف:</span>
+          +968 0000 0000
+        </div>
+        <div class="footer-info-line">
+          <span class="label">البريد الإلكتروني:</span>
+          info@tasheel.example
+        </div>
+        <div class="footer-info-line">
+          <span class="label">صندوق البريد:</span>
+          1234 مسقط
+        </div>
+      </div>
+
+      <div>
+        <div class="footer-block-title">روابط</div>
+        <div class="footer-links">
+          <a href="#" class="footer-link">انضم كمورد</a>
+          <a href="#" class="footer-link">شروط الخدمة</a>
+          <a href="#" class="footer-link">سياسة الخصوصية</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer-copy">© 2025 تسهيل. جميع الحقوق محفوظة.</div>
+  </div>
+</footer>
+
+</body>
+</html>
